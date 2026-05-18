@@ -1,0 +1,62 @@
+{
+  "name": "lars-cc-skills",
+  "owner": "lars-hh",
+  "description": "Curated Claude Code skills, refined for knowledge workers.",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "caveman",
+      "description": "Output token reduction via caveman-speak modes (lite/full/ultra).",
+      "category": "productivity",
+      "source": { "source": "directory", "path": "./skills/caveman" }
+    },
+    {
+      "name": "repomix",
+      "description": "Pack a folder as single AI-readable file for cross-project context.",
+      "category": "knowledge-management",
+      "source": { "source": "directory", "path": "./skills/repomix" }
+    },
+    {
+      "name": "security-auditor",
+      "description": "Audit a skill or plugin folder for supply-chain risks (LICENSE, allowed-tools, bash calls).",
+      "category": "quality",
+      "source": { "source": "directory", "path": "./skills/security-auditor" }
+    },
+    {
+      "name": "mermaid-diagram-specialist",
+      "description": "Generate Mermaid diagrams (flowchart, sequence, ERD, C4, state, Gantt) from text descriptions.",
+      "category": "visualization",
+      "source": { "source": "directory", "path": "./skills/mermaid-diagram-specialist" }
+    },
+    {
+      "name": "changelog-skill",
+      "description": "Generate Keep-a-Changelog-conformant CHANGELOG.md from git log.",
+      "category": "git",
+      "source": { "source": "directory", "path": "./skills/changelog-skill" }
+    },
+    {
+      "name": "karpathy-skills",
+      "description": "Coding principles (Think Before, Simplicity First, Surgical Changes, Goal-Driven Execution). Karpathy-inspired, by forrestchang/multica-ai.",
+      "category": "coding-discipline",
+      "source": { "source": "directory", "path": "./skills/karpathy-skills" }
+    },
+    {
+      "name": "humanizer",
+      "description": "Remove AI-writing patterns (em-dash overuse, leverage, inflated symbolism). English + German variants.",
+      "category": "writing",
+      "source": { "source": "directory", "path": "./skills/humanizer" }
+    },
+    {
+      "name": "obsidian-markdown",
+      "description": "Generate valid Obsidian-flavored markdown with configurable wikilink conventions.",
+      "category": "knowledge-management",
+      "source": { "source": "directory", "path": "./skills/obsidian-markdown" }
+    },
+    {
+      "name": "jq",
+      "description": "Translate natural-language JSON questions into jq expressions.",
+      "category": "data",
+      "source": { "source": "directory", "path": "./skills/jq" }
+    }
+  ]
+}
