@@ -15,8 +15,20 @@ divergence_notes: |
   - Added Lars-Specific Whitelist section: fragments, direct address, conscious
     Anglicisms, code-switching, compact bullets — preserved as deliberate voice
     when --profile lars is set.
-  - Extended frontmatter description to mention German variant and Lars whitelist.
+  - Added Modes table at top of skill body to make --profile lars discoverable
+    (resolved Critical Issue 2 from 2026-05-19 audit).
+  - Added empty-input + clean-input handling to Process step 1
+    (resolved Critical Issue 3 from 2026-05-19 audit).
+  - Added German activation threshold (>50% by word count) and G7/Lars Whitelist
+    conflict resolution rule.
+  - Refined frontmatter description per audit Quick Fix 1.
   - English patterns 1-29 unchanged from upstream.
+known_deviations: |
+  - Pure markdown structure (no XML tags) — deviates from the auditor's pure-XML
+    standard. Decision: deferred to v0.2 as a documented deviation. Rationale:
+    upstream blader/humanizer is markdown, and rewriting to XML risks breaking
+    Wikipedia-citation accuracy across 29 patterns. Will revisit when authoring
+    a new skill from scratch.
 notes: |
   - Initially fetched from davila7/claude-code-templates (v2.1.1, redistribution),
     then switched to direct upstream blader/humanizer (v2.5.1) for cleaner
