@@ -1,0 +1,25 @@
+inspired_by: blader/humanizer
+source_url: https://github.com/blader/humanizer
+source_path: SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: 8b3a17889fbf12bedae20974a3c9f9de746ed754
+upstream_version: 2.5.1
+license: MIT
+original_author: "Siqi Chen (blader) — https://github.com/blader"
+divergence_notes: |
+  - Added German Variant section with 12 patterns (G1-G12) targeting German AI tells:
+    Nominalstil-Inflation, Floskeln, Übertriebene Gewissheit, Verstärker-Inflation,
+    Meta-Ankündigungen, Höflichkeits-Boilerplate, Anglizismen-Schmatz, falsche Plurale,
+    Konjunktiv-II-Höflichkeit, tautologische Aufzählungen, "Wichtig zu beachten"-Hedge,
+    Übersetzungs-Fossile.
+  - Added Lars-Specific Whitelist section: fragments, direct address, conscious
+    Anglicisms, code-switching, compact bullets — preserved as deliberate voice
+    when --profile lars is set.
+  - Extended frontmatter description to mention German variant and Lars whitelist.
+  - English patterns 1-29 unchanged from upstream.
+notes: |
+  - Initially fetched from davila7/claude-code-templates (v2.1.1, redistribution),
+    then switched to direct upstream blader/humanizer (v2.5.1) for cleaner
+    attribution and more current patterns. davila7 was 4 patterns behind.
+  - Original repo has 19,587 stars and is actively maintained (last push 2026-04-01).
+  - blader = Siqi Chen, confirmed via LICENSE copyright line.
