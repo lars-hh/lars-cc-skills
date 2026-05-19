@@ -1,0 +1,26 @@
+inspired_by: majiayu000/claude-skill-registry
+source_url: https://github.com/majiayu000/claude-skill-registry
+source_path: skills/data/jq/SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: fa3abd30d36ee95c5b42d257edb9e814847ccd4b
+license: MIT
+version: 1.0.0
+original_author: "Jiayu Ma (majiayu000) — https://github.com/majiayu000"
+fallback_source: lanej/dotfiles
+divergence_notes: |
+  - vanilla (body and frontmatter verbatim from upstream; no name rename
+    needed as `name: jq` already matches the marketplace plugin name)
+known_deviations: |
+  - Pure markdown structure (no XML tags) — consistent with the other
+    vanilla and refined skills in this marketplace. v0.2 deferral.
+notes: |
+  - 310 stars on the upstream repo (verified 2026-05-19). Smaller than the
+    other vanilla sources but the skill itself is focused and high-quality:
+    a CLI reference for jq with concrete usage examples.
+  - Bus-factor: medium. fallback_source: lanej/dotfiles is documented as
+    an ideas source but its own LICENSE has not been verified — if
+    majiayu000 disappears, lanej would need a separate license check
+    before being adopted as upstream.
+  - The repo is a `claude-skill-registry` collection (registry-style, not
+    aggregator-style). majiayu000 is the original author of this jq skill,
+    not a redistributor.
