@@ -1,0 +1,38 @@
+inspired_by: davila7/claude-code-templates
+source_url: https://github.com/davila7/claude-code-templates
+source_path: cli-tool/components/skills/creative-design/mermaid-diagrams/SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: 2b558d59d7482aa0e94a53d72a6b9d0e465a5fc3
+license: MIT
+version: 1.0.0
+original_author: "davila7 (Daniel Avila) — https://github.com/davila7 (re-distributor; no dedicated upstream verified)"
+divergence_notes: |
+  - Frontmatter `name: mermaid-diagrams → name: mermaid-diagram-specialist`
+    to match the marketplace plugin name in marketplace.json. Body
+    verbatim; 6 reference files
+    (advanced-features, c4-diagrams, class-diagrams, erd-diagrams,
+    flowcharts, sequence-diagrams) imported verbatim into references/.
+known_deviations: |
+  - Pure markdown structure (no XML tags) — consistent with the other
+    vanilla and refined skills in this marketplace. v0.2 deferral.
+notes: |
+  - davila7/claude-code-templates is an aggregator repo (27k+ stars at
+    time of import). Per the marketplace's Lesson 4, we tried to find a
+    dedicated upstream for mermaid-diagram-specialist before falling back
+    to davila7, but no dedicated upstream surfaced via the standard
+    search (gh search repos "mermaid-diagram-specialist skill" returned
+    no canonical hit, and the SKILL.md header carries no original-author
+    attribution beyond what davila7 publishes).
+  - Pattern from Phase 2.1 (humanizer) and 2.2 (obsidian-markdown)
+    suggests davila7 occasionally ships skills slightly stale or without
+    original-author attribution. Two checks performed on import:
+    (a) frontmatter looks self-contained and well-authored;
+    (b) references/ structure (6 deep-dive files) suggests substantial
+    effort by whoever wrote it — likely davila7 themselves or a
+    contributor.
+  - No fallback_source identified. If davila7 disappears, a cleanroom
+    reimplementation from Mermaid's official syntax docs
+    (https://mermaid.js.org/intro/) is the practical path.
+  - The marketplace.json plugin description was already
+    "Generate Mermaid diagrams (flowchart, sequence, ERD, C4, state,
+    Gantt) from text descriptions." — matches the skill content well.
