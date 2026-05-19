@@ -1,0 +1,44 @@
+inspired_by: alirezarezvani/claude-skills
+source_url: https://github.com/alirezarezvani/claude-skills
+source_path: engineering/skills/skill-security-auditor
+last_upstream_check: 2026-05-19
+upstream_commit: 6bf737fb4aee65ed187a8a64b311e32fead2ff05
+license: MIT
+original_author: "Alireza Rezvani (alirezarezvani) — https://github.com/alirezarezvani"
+divergence_notes: |
+  - Renamed frontmatter `name: "skill-security-auditor"` → `name: security-auditor`
+    to match the marketplace plugin name in marketplace.json.
+  - Added `version: 1.0.0` and `license: MIT` to the frontmatter for refined-skill
+    convention parity with humanizer and obsidian-markdown.
+  - Extended description with use case (8) — lars-cc-skills marketplace compliance
+    check — and the new trigger phrase "marketplace compliance check".
+  - Added a Modes table at the top of the skill body distinguishing the generic
+    security scanner (upstream Python script, unchanged) from the new marketplace
+    compliance wrapper.
+  - Added new section "Marketplace Compliance Mode (lars-cc-skills)" documenting
+    three checks: LICENSE file presence + SPDX allow-list, allowed-tools
+    whitelist discipline, frontmatter schema compliance.
+  - Added new script `scripts/marketplace_audit.sh` (~170 LOC bash + embedded
+    python3) implementing the three checks. Supports per-skill or `--all` mode
+    plus optional `--with-security` flag to chain the upstream scanner.
+  - Allow-listed SPDX identifiers (MIT, Apache-2.0, BSD-*, ISC) mirror the
+    repo-level `scripts/audit-license.sh` policy.
+  - Upstream Python scanner (`scripts/skill_security_auditor.py`) and
+    `references/threat-model.md` are unchanged — preserved verbatim.
+known_deviations: |
+  - Pure markdown structure (no <objective>, <quick_start>, <success_criteria>
+    XML tags) — deviates from the skill-auditor agent's pure-XML standard.
+    Decision: deferred to v0.2 as a documented deviation, consistent with the
+    same deferral on humanizer + obsidian-markdown. Rationale: rewriting a
+    1066-LOC script's reference doc to XML is high effort with low marginal
+    value for v0.1.0.
+notes: |
+  - alirezarezvani/claude-skills has 15,444 stars, MIT license at repo level
+    (Copyright 2025 Alirezarezvani), actively maintained.
+  - Original author chain confirmed: SKILL.md was authored by Reza Rezvani
+    himself (commit 1851c8fb on 2026-05-02), with one automated Claude fix
+    commit on 2026-05-10 for self-skip noqa directive. No re-distribution
+    chain — this is the upstream.
+  - Hunt for dedicated upstream returned several alternative implementations
+    (wrsmith108, burakseyman, trailofbits/skills) but no canonical
+    pre-Alireza source for this specific skill — Alireza authored it.

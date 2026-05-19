@@ -22,10 +22,11 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### security-auditor
 
-- **Upstream:** [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills)
-- **License:** MIT (TBD — verify at import)
-- **Author:** alirezarezvani (verify original skill author in SKILL.md header)
-- **This marketplace:** Refined for marketplace-specific audits (LICENSE-file check, bash-whitelist, frontmatter schema)
+- **Upstream:** [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills), path `engineering/skills/skill-security-auditor/` (SKILL.md + `references/threat-model.md` + `scripts/skill_security_auditor.py`)
+- **License:** MIT (LICENSE copyright: "2025 Alirezarezvani")
+- **Author:** Alireza Rezvani (alirezarezvani) — original author, not a redistributor. Confirmed via commit history (`1851c8fb` 2026-05-02 authored by Reza Rezvani).
+- **Upstream commit pinned:** `6bf737fb4aee65ed187a8a64b311e32fead2ff05` (2026-05-19)
+- **This marketplace:** Refined — renamed `name:` to `security-auditor` for marketplace plugin parity, added `version: 1.0.0` + `license: MIT` to frontmatter, extended description with marketplace-compliance use case, added new section "Marketplace Compliance Mode" documenting three checks (LICENSE present + SPDX allowlist, allowed-tools whitelist discipline, frontmatter schema), added new wrapper script `scripts/marketplace_audit.sh` (~170 LOC bash + embedded python3) supporting per-skill, `--all`, and `--with-security` modes. Upstream Python scanner and threat-model reference preserved verbatim.
 
 ### mermaid-diagram-specialist
 
