@@ -39,7 +39,7 @@ but I'm leaving that untouched — the request was the typo. If you want a
 cleanup pass on that function, say so and I'll do it as a separate change.
 ```
 
-Principle 3's „Don't 'improve' adjacent code… Match existing style"
+Principle 3's "Don't 'improve' adjacent code… Match existing style"
 prevents drive-by refactoring that bloats PRs. The skill also surfaces
 the noticed issue (per Principle 3's "mention it - don't delete it") so
 the user can choose explicitly.
@@ -76,9 +76,10 @@ After `/plugin install karpathy-skills@lars-cc-skills`, sanity-check:
 1. Skill activates on coding-task starts — try a prompt like "Add a
    feature flag for X" and confirm the skill nudges toward Principle 2
    (simplicity check) before code is written.
-2. Skill does NOT activate on pure-conversation prompts (e.g. "what is
-   the karpathy guidelines skill about" should not trigger writing,
-   just summarize).
+2. Skill does NOT activate on pure-conversation prompts. Concrete check:
+   ask "what is the difference between Principle 1 (Think Before Coding)
+   and Principle 3 (Surgical Changes)?" — Claude should answer the
+   conceptual question without invoking the skill against any code.
 3. Verify the GSD-abgrenzung holds: ask "should I use this instead of
    GSD?" — answer should explain coexistence, not pick one over the
    other.

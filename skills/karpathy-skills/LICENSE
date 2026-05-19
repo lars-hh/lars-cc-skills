@@ -1,12 +1,5 @@
 MIT License
 
-NOTE: This LICENSE file was reconstructed locally because the upstream repo
-multica-ai/andrej-karpathy-skills declared MIT in its plugin.json manifest
-but did not ship a LICENSE file at the repo root. The MIT-text below
-matches the standard MIT template, with copyright reflecting the upstream
-author chain documented in origin.yaml. A follow-up upstream PR to add a
-proper LICENSE file is tracked as a Lars-action in origin.yaml notes.
-
 Copyright (c) 2026 forrestchang (Jiayuan Zhang) and multica-ai contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,3 +19,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Reconstruction note: This LICENSE file was reconstructed locally because the
+upstream repo multica-ai/andrej-karpathy-skills declared MIT in its
+plugin.json manifest but did not ship a LICENSE file at the repo root. The
+MIT text above matches the standard MIT template, with copyright reflecting
+the upstream author chain. A follow-up upstream PR to add a proper LICENSE
+file is tracked as a Lars-action in `origin.yaml notes`. SPDX identifier:
+MIT.

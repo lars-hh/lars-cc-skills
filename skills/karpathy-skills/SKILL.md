@@ -23,7 +23,7 @@ description: |
 
 These four principles are **inspired by** [Andrej Karpathy's X-post on LLM coding pitfalls (2026-01-26)](https://x.com/karpathy/status/2015883857489522876). They were **authored** by Jiayuan Zhang ([@forrestchang](https://github.com/forrestchang)) and contributors under the [multica-ai](https://github.com/multica-ai) organization, in the upstream repo [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) under MIT license.
 
-Karpathy himself does **not** maintain Claude Code skills. If you see this skill referenced as "by Karpathy", that is a community mis-attribution — please correct it where it appears.
+Karpathy himself does **not** maintain Claude Code skills. Any external references attributing this skill to Karpathy directly are mis-attributions.
 
 ## When to use this skill
 
@@ -102,6 +102,6 @@ The fourth principle, **Goal-Driven Execution**, overlaps in spirit with GSD (`/
 | Output | Mental adjustment | Files in `.planning/`, atomic commits, verification reports |
 | Pairs with | GSD, Superpowers, any task framework | This skill (as the inline reminder during execute-phase) |
 
-In other words: GSD and Superpowers structure **what** you build and **how the work moves**. These four Karpathy-inspired principles structure **how you write each line** while you do it. Use them together, not instead of each other.
+In other words: GSD and Superpowers (`/gsd-plan-phase`, `/superpowers:executing-plans`) structure **what** you build and **how the work moves**. These four Karpathy-inspired principles structure **how you write each line** while you do it. Use them together, not instead of each other.
 
 If you find yourself reaching for these principles in place of a planning workflow on a non-trivial task, prefer the planning workflow — these guidelines are not a substitute for a plan with verifiable steps.
