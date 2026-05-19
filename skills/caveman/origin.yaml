@@ -1,0 +1,24 @@
+inspired_by: JuliusBrussee/caveman
+source_url: https://github.com/JuliusBrussee/caveman
+source_path: plugins/caveman/skills/caveman/SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: 18e45320a0b1aecc959a807f8568ee44b3aaa055
+license: MIT
+version: 1.0.0
+original_author: "Julius Brussee (JuliusBrussee) — https://github.com/JuliusBrussee"
+divergence_notes: |
+  - vanilla (body and frontmatter verbatim from upstream; no name rename
+    needed as `name: caveman` already matches the marketplace plugin name)
+known_deviations: |
+  - Pure markdown structure (no XML tags) — consistent with the other
+    vanilla and refined skills in this marketplace. v0.2 deferral.
+notes: |
+  - 62,078 stars on the upstream repo (verified 2026-05-19), one of the
+    most-starred Claude Code skills in existence. Established author,
+    actively maintained. Bus-factor: low.
+  - The upstream repo is multi-platform — also ships .junie/, .kiro/,
+    .roo/, .agents/, and .cursor/ variants of the same skill. We import
+    only the Claude Code variant from `plugins/caveman/skills/caveman/`.
+  - Related sibling skills `cavecrew`, `caveman-compress`, `caveman-stats`
+    also exist in the upstream and could be considered for a future
+    marketplace addition. Out of scope for v0.1.0.
