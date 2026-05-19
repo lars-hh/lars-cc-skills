@@ -1,0 +1,27 @@
+inspired_by: SpreMars/obsidian-markdown-skill
+source_url: https://github.com/SpreMars/obsidian-markdown-skill
+source_path: SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: bf17720d424917ce0753461694e3a6158cec3ebc
+license: MIT
+original_author: "Trae Skills Community (per LICENSE copyright) / SpreMars (repo owner)"
+fallback_source: davila7/claude-code-templates (cli-tool/components/skills/document-processing/obsidian-markdown/SKILL.md) — if SpreMars goes stale
+divergence_notes: |
+  - Added frontmatter fields: version (1.0.0), license, wikilink_style (default: generic), allowed-tools.
+  - Added Modes table at top of skill body documenting generic | lars-para | custom modes.
+  - Extended description to mention wikilink_style modes.
+  - Added a "When wikilink_style: lars-para is active" section under Internal Links with 6 concrete path examples, plus a pointer to references/WIKILINKS-LARS-PARA.md.
+  - Created new reference file references/WIKILINKS-LARS-PARA.md with all 10 PARA path patterns: People (Hub + Profile), Projects, Notes, Daily, Resources, Areas, brain, Templates, Inbox.
+  - Documented slug rules (UTF-8 umlauts preserved, kebab-case).
+  - Custom-mode loader spec: ~/.config/obsidian-markdown/wikilinks.yml with item-by-item override and silent fallback to lars-para.
+  - Upstream files imported verbatim: LICENSE, references/CALLOUTS.md, references/EMBEDS.md, references/PROPERTIES.md.
+notes: |
+  - SpreMars repo has 0 stars (Bus-Factor-Risk). Documented fallback_source to davila7 redistribution
+    if SpreMars goes stale.
+  - LICENSE copyright is "2026 Trae Skills Community" not SpreMars personally — Trae IDE community.
+    SKILL.md, README and references all attributed to SpreMars as repo owner.
+  - SKILL.md uses pure-markdown structure (no XML tags), same trade-off as humanizer.
+    Deferred XML migration to v0.2 per spec.
+known_deviations: |
+  - Pure markdown structure (no XML tags) — deferred to v0.2 with the same rationale as humanizer:
+    upstream preservation, content-stability priority over structural reform.

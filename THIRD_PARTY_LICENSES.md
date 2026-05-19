@@ -57,10 +57,12 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### obsidian-markdown
 
-- **Upstream:** [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates), path `cli-tool/components/skills/document-processing/obsidian-markdown/SKILL.md`
-- **License:** MIT
-- **Author:** davila7 is redistributor; verify original author at import
-- **This marketplace:** Refined — added configurable wikilink convention (`lars-para`, `generic`, `custom` modes)
+- **Upstream:** [SpreMars/obsidian-markdown-skill](https://github.com/SpreMars/obsidian-markdown-skill), path `SKILL.md` + 3 reference files (`CALLOUTS.md`, `EMBEDS.md`, `PROPERTIES.md`)
+- **License:** MIT (LICENSE-File copyright: "2026 Trae Skills Community" — Trae IDE community attribution; repo owner: SpreMars)
+- **Author:** SpreMars (repo owner), Trae Skills Community (LICENSE-named)
+- **Upstream commit pinned:** `bf17720d424917ce0753461694e3a6158cec3ebc` (2026-03-31)
+- **Bus-Factor risk:** 0 stars at time of import; documented `fallback_source: davila7/claude-code-templates` redistribution as fallback if SpreMars goes stale.
+- **This marketplace:** Refined — added Modes table (generic | lars-para | custom), frontmatter `wikilink_style` variable, `allowed-tools` declaration, new reference `WIKILINKS-LARS-PARA.md` documenting 10 PARA path patterns with slug rules. Upstream `SKILL.md` body and references (CALLOUTS, EMBEDS, PROPERTIES) preserved verbatim.
 
 ### jq
 
