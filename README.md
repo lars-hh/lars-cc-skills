@@ -10,7 +10,7 @@ A small, opinionated marketplace of skills picked from across the Claude Code ec
 
 ## Philosophy
 
-- **Cherry-pick as starting point, not endgame.** Skills get refined with [taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources) tooling (audit-skill → heal-skill → create-skill).
+- **Cherry-pick as starting point, not endgame.** Skills get refined via the 10-step workflow in [`docs/veredelung-workflow.md`](docs/veredelung-workflow.md) — sub-plan via `/taches-cc-resources:create-plan`, baseline + re-audit via `Agent(taches-cc-resources:skill-auditor)`, writing-patterns checklist from the official `skill-creator` skill.
 - **Origin-tracking, not live-sync.** Each skill carries an `origin.yaml` recording the upstream source, the divergence notes, and the last upstream check. We track for updates, not for identity.
 - **License hygiene first.** No skill enters the marketplace without a verified LICENSE file at the source repo. See `docs/license-audit.md`.
 
@@ -31,7 +31,7 @@ A small, opinionated marketplace of skills picked from across the Claude Code ec
 | mermaid-diagram-specialist | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Vanilla | MIT |
 | changelog-skill | [myl7/changelog-skill](https://github.com/myl7/changelog-skill) | Vanilla | Apache-2.0 |
 | karpathy-skills | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | Refined (owner attribution) | MIT |
-| humanizer | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) (original @blader) | Refined (German variant) | MIT |
+| humanizer | [blader/humanizer](https://github.com/blader/humanizer) | Refined (German variant) | MIT |
 | obsidian-markdown | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Refined (wikilink convention) | MIT |
 | jq | [majiayu000/claude-skill-registry](https://github.com/majiayu000/claude-skill-registry) | Vanilla | MIT |
 
