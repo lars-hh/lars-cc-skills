@@ -8,17 +8,19 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### caveman
 
-- **Upstream:** [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
-- **License:** MIT (TBD — verify at import)
-- **Author:** JuliusBrussee
-- **This marketplace:** Vanilla
+- **Upstream:** [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman), path `plugins/caveman/skills/caveman/SKILL.md`
+- **License:** MIT (LICENSE copyright: JuliusBrussee)
+- **Author:** Julius Brussee ([@JuliusBrussee](https://github.com/JuliusBrussee))
+- **Upstream commit pinned:** `18e45320a0b1aecc959a807f8568ee44b3aaa055` (2026-05-19, 62,078 stars)
+- **This marketplace:** Vanilla (body and frontmatter verbatim from upstream; `name: caveman` already matches the plugin name in marketplace.json — no rename needed).
 
 ### repomix
 
-- **Upstream:** [yamadashy/repomix](https://github.com/yamadashy/repomix)
-- **License:** MIT (TBD — verify at import)
-- **Author:** yamadashy
-- **This marketplace:** Vanilla wrapper around the `repomix` CLI
+- **Upstream:** [yamadashy/repomix](https://github.com/yamadashy/repomix) — this is a CLI tool, not a Claude Code skill. The upstream LICENSE is shipped verbatim under `skills/repomix/LICENSE`.
+- **License:** MIT (LICENSE copyright: 2024 Kazuki Yamada)
+- **Author:** Kazuki Yamada ([@yamadashy](https://github.com/yamadashy))
+- **Upstream commit pinned:** `fabc367d329e65ef5d6afb8edb4d141801efaf26` (2026-05-19, 25,088 stars)
+- **This marketplace:** **Wrapper SKILL.md** — there is no upstream SKILL.md to copy. This marketplace ships a `SKILL.md` that documents the CLI's installation, common flags, when-to-use guidance, and `allowed-tools` declaration. Users must install the CLI separately (`brew install repomix` or `npm install -g repomix`).
 
 ### security-auditor
 
@@ -30,10 +32,11 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### mermaid-diagram-specialist
 
-- **Upstream:** [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates), path `cli-tool/components/skills/development/mermaid-diagram-specialist/SKILL.md`
-- **License:** MIT
-- **Author:** davila7 is the redistributor; verify original author in SKILL.md header at import
-- **This marketplace:** Vanilla
+- **Upstream:** [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates), path `cli-tool/components/skills/creative-design/mermaid-diagrams/` (SKILL.md + 6 reference files in `references/`)
+- **License:** MIT (LICENSE copyright per davila7's repo-level LICENSE)
+- **Author:** davila7 (Daniel Avila, [@davila7](https://github.com/davila7)). The upstream SKILL.md header carries no separate original-author attribution, and `gh search repos "mermaid-diagram-specialist skill"` surfaced no dedicated upstream — davila7 is the best-available source.
+- **Upstream commit pinned:** `2b558d59d7482aa0e94a53d72a6b9d0e465a5fc3` (2026-05-19)
+- **This marketplace:** Vanilla with one allowed frontmatter rename — `name: mermaid-diagrams → name: mermaid-diagram-specialist` to match the plugin name in marketplace.json. Body verbatim. 6 reference files (`advanced-features.md`, `c4-diagrams.md`, `class-diagrams.md`, `erd-diagrams.md`, `flowcharts.md`, `sequence-diagrams.md`) imported verbatim into `skills/mermaid-diagram-specialist/references/`.
 
 ### changelog-skill
 
@@ -70,9 +73,11 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 ### jq
 
 - **Upstream:** [majiayu000/claude-skill-registry](https://github.com/majiayu000/claude-skill-registry), path `skills/data/jq/SKILL.md`
-- **License:** MIT
-- **Author:** majiayu000
-- **This marketplace:** Vanilla
+- **License:** MIT (LICENSE copyright per majiayu000's repo-level LICENSE)
+- **Author:** Jiayu Ma ([@majiayu000](https://github.com/majiayu000)) — original author, the repo is a `claude-skill-registry` collection (registry-style, not aggregator-style).
+- **Upstream commit pinned:** `fa3abd30d36ee95c5b42d257edb9e814847ccd4b` (2026-05-19, 310 stars)
+- **Bus-Factor risk:** Medium — 310 stars. `fallback_source: lanej/dotfiles` documented in origin.yaml as an ideas source, but its own LICENSE has not been verified — would need a separate check before adoption.
+- **This marketplace:** Vanilla (body and frontmatter verbatim from upstream; `name: jq` already matches the plugin name in marketplace.json — no rename needed).
 
 ## How to verify attribution
 
