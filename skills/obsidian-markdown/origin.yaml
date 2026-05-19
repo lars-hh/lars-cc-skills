@@ -7,13 +7,15 @@ license: MIT
 original_author: "Trae Skills Community (per LICENSE copyright) / SpreMars (repo owner)"
 fallback_source: davila7/claude-code-templates (cli-tool/components/skills/document-processing/obsidian-markdown/SKILL.md) — if SpreMars goes stale
 divergence_notes: |
-  - Added frontmatter fields: version (1.0.0), license, wikilink_style (default: generic), allowed-tools.
+  - Added frontmatter fields: version (1.0.0), license, compatibility (claude-code opencode), wikilink_style (default: generic), allowed-tools.
   - Added Modes table at top of skill body documenting generic | lars-para | custom modes.
-  - Extended description to mention wikilink_style modes.
+  - Extended description to mention both activation methods (frontmatter + invocation flag).
   - Added a "When wikilink_style: lars-para is active" section under Internal Links with 6 concrete path examples, plus a pointer to references/WIKILINKS-LARS-PARA.md.
   - Created new reference file references/WIKILINKS-LARS-PARA.md with all 10 PARA path patterns: People (Hub + Profile), Projects, Notes, Daily, Resources, Areas, brain, Templates, Inbox.
   - Documented slug rules (UTF-8 umlauts preserved, kebab-case).
-  - Custom-mode loader spec: ~/.config/obsidian-markdown/wikilinks.yml with item-by-item override and silent fallback to lars-para.
+  - Custom-mode loader spec: ~/.config/obsidian-markdown/wikilinks.yml with item-by-item override and silent fallback to lars-para. Edge cases documented: missing file, empty file, missing patterns key, malformed YAML, symlink outside config dir.
+  - Added note-level frontmatter precedence rule (note `wikilink_style` overrides skill default).
+  - Audit fix 2026-05-19: corrected stale `humanizer-note:` comment label to `obsidian-markdown-note:` in fallback spec (copy-paste bug from humanizer veredelung).
   - Upstream files imported verbatim: LICENSE, references/CALLOUTS.md, references/EMBEDS.md, references/PROPERTIES.md.
 notes: |
   - SpreMars repo has 0 stars (Bus-Factor-Risk). Documented fallback_source to davila7 redistribution

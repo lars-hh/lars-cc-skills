@@ -6,9 +6,11 @@ description: |
   properties, and other Obsidian-specific syntax. Use when working with .md files
   in Obsidian, or when the user mentions wikilinks, callouts, frontmatter, tags,
   embeds, or Obsidian notes. Supports a `wikilink_style` mode for users whose
-  vaults follow path conventions (PARA, Zettelkasten, etc.) — see Modes section
-  and `references/WIKILINKS-LARS-PARA.md` for the `lars-para` preset.
+  vaults follow path conventions (PARA, Zettelkasten, etc.) — activate with
+  `wikilink_style: lars-para` in note frontmatter or `--wikilink-style lars-para`
+  at invocation. See Modes section and `references/WIKILINKS-LARS-PARA.md`.
 license: MIT
+compatibility: claude-code opencode
 wikilink_style: generic
 allowed-tools:
   - Read
@@ -32,6 +34,8 @@ Create and edit valid Obsidian Flavored Markdown. Obsidian extends CommonMark an
 | **Custom** | Frontmatter `wikilink_style: custom` plus a `~/.config/obsidian-markdown/wikilinks.yml` config with user-defined patterns. | Loads path patterns from the YAML config. Falls back to `lars-para` if a referenced pattern is missing. |
 
 **Conflict resolution:** Custom patterns always win over `lars-para` defaults. `lars-para` always wins over `generic` when both could apply. If a vault contains both a flat note (`Note.md`) and a PARA path (`Notes/Note.md`), the skill prefers the path form when in `lars-para` mode and asks for clarification when ambiguous.
+
+**Note-level vs. skill-default precedence:** When the skill is invoked on a note that carries its own `wikilink_style:` value in its frontmatter, the **note-level value wins** over the skill's own frontmatter default (`generic`). This lets users opt a single note into `lars-para` or `custom` without changing the skill itself.
 
 ## Workflow: Creating an Obsidian Note
 

@@ -48,7 +48,7 @@
     },
     {
       "name": "obsidian-markdown",
-      "description": "Generate valid Obsidian-flavored markdown with configurable wikilink conventions.",
+      "description": "Generate valid Obsidian-flavored markdown (wikilinks, callouts, properties, embeds). Activate PARA-style path conventions with `wikilink_style: lars-para` or `--wikilink-style lars-para`.",
       "category": "knowledge-management",
       "source": { "source": "directory", "path": "./skills/obsidian-markdown" }
     },

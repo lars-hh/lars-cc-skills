@@ -64,7 +64,20 @@ patterns:
   # ... missing patterns fall back to lars-para
 ```
 
-If the config is malformed or missing required keys, fall back silently to the `lars-para` default for that pattern and add a `<!-- humanizer-note: custom pattern X missing, fell back to lars-para -->` HTML comment near the affected wikilink.
+### Custom-mode fallback behavior
+
+Fall back silently to the `lars-para` default for any pattern that cannot be resolved from the custom config. Add a single `<!-- obsidian-markdown-note: custom pattern X missing, fell back to lars-para -->` HTML comment near the first affected wikilink in the note (not per occurrence).
+
+Specific edge cases for the custom-config loader at `~/.config/obsidian-markdown/wikilinks.yml`:
+
+| Condition | Behavior |
+|---|---|
+| File does not exist | Fall back entirely to `lars-para`. No HTML comment needed — the user knows they did not configure it. |
+| File exists but is empty (0 bytes or whitespace only) | Same as missing: fall back entirely to `lars-para`. Emit one HTML comment per note: `<!-- obsidian-markdown-note: custom config empty, using lars-para defaults -->`. |
+| File is valid YAML but `patterns:` key is absent | Treat as empty patterns map. Fall back per-item, emit one HTML comment per note explaining the missing key. |
+| Individual pattern key (e.g., `Person:`) is absent while `patterns:` is set | Fall back to `lars-para` for that specific pattern, emit the per-pattern HTML comment as documented above. |
+| File is a symlink that resolves outside `~/.config/obsidian-markdown/` | **Refuse to load** for safety (config-injection prevention). Fall back to `lars-para` and emit `<!-- obsidian-markdown-note: custom config symlink resolves outside expected directory, using lars-para -->`. |
+| File is malformed YAML (parse error) | **Refuse to load.** Fall back to `lars-para` and emit `<!-- obsidian-markdown-note: custom config has YAML parse error, using lars-para -->`. Do not partially apply any patterns. |
 
 ## What This Mode Does NOT Do
 
