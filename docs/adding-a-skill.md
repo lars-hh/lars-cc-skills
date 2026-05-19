@@ -78,14 +78,20 @@ skills/<name>/
 
 ```yaml
 inspired_by: owner/repo            # GitHub slug of the upstream
+source_url: https://github.com/... # Full URL to the upstream repo
 source_path: path/to/SKILL.md      # Path inside the upstream repo
 last_upstream_check: 2026-MM-DD    # Date of the last drift check
-divergence_notes: |                # What we changed
-  - vanilla   # ...or specific notes
-license: MIT                        # SPDX identifier
+upstream_commit: <40-char SHA>     # Pinned commit for drift detection
+license: MIT                        # SPDX identifier (MIT, Apache-2.0, BSD-*, ISC)
+version: 1.0.0                      # Mirrors SKILL.md frontmatter for refined skills
 original_author: name               # Especially important for redistributor repos
 fallback_source: owner/repo         # Optional: alternative if upstream dies
-upstream_commit: <sha>              # Optional: pin a specific commit
+divergence_notes: |                 # What we changed (or "vanilla")
+  - vanilla   # ...or specific notes
+known_deviations: |                 # Optional: audit findings deliberately left unfixed
+  - XML migration deferred to v0.2
+notes: |                            # Optional: free-text context (bus-factor, LICENSE risks, follow-ups)
+  - Bus-factor low, fallback verified
 ```
 
 ### Step 7 — Update marketplace files

@@ -1,6 +1,12 @@
 ---
 name: changelog-skill
-description: Use when creating or updating the changelog (CHANGELOG.md).
+description: |
+  Generate or update CHANGELOG.md following Keep a Changelog 1.1.0 and Semantic
+  Versioning. Use when recording changes for a software release, moving
+  Unreleased entries into a versioned section, setting up a new CHANGELOG.md
+  from scratch, or auditing whether an existing changelog matches the
+  Keep-a-Changelog conventions (Added / Changed / Deprecated / Removed /
+  Fixed / Security categories).
 license: Apache-2.0
 metadata:
   author: Yulong Ming <i@myl7.org>

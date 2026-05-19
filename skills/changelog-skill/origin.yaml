@@ -8,12 +8,22 @@ version: 1.0.0
 original_author: "Yulong Ming (myl7) — i@myl7.org"
 fallback_source: valetivivek/md-craft-skill
 divergence_notes: |
-  Minimal-vanilla:
-  - Frontmatter name: changelog → changelog-skill (matches the plugin name
-    in marketplace.json; otherwise body verbatim, no content changes).
+  Lightly refined (minimal vanilla + one description rewrite from audit):
+  - Frontmatter `name: changelog → changelog-skill` to match the plugin
+    name in marketplace.json.
+  - Frontmatter `description:` expanded from the upstream's single
+    circular sentence ("Use when creating or updating the changelog
+    (CHANGELOG.md)") to a multi-line description that names the
+    Keep a Changelog 1.1.0 convention, the SemVer connection, and four
+    concrete activation contexts (release recording, Unreleased→versioned
+    promotion, new file setup, audit-existing). This was flagged by
+    skill-auditor (Quick Fix 1, 2026-05-19) — original wording would have
+    competed with adjacent tasks like "write a release announcement" and
+    failed to disambiguate.
   - LICENSE filename: upstream is `LICENSE.txt` at repo root, copied
     locally as `LICENSE` so audit-license.sh finds it without a glob
-    change. SPDX-identifier and license text unchanged.
+    change. SPDX identifier and license text unchanged.
+  - Body content unchanged from upstream.
 known_deviations: |
   - Pure markdown structure (no <objective>, <quick_start>, <success_criteria>
     XML tags) — consistent with the four refined skills' v0.2 deferral
