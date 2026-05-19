@@ -56,10 +56,12 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### humanizer
 
-- **Upstream:** [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates), path `cli-tool/components/skills/productivity/humanizer/SKILL.md`
-- **Original author:** @blader (davila7 is redistributor — verify in SKILL.md header at import)
-- **License:** MIT
-- **This marketplace:** Refined — added German-language variant with German AI-writing patterns and Lars-specific anti-tells whitelist
+- **Upstream:** [blader/humanizer](https://github.com/blader/humanizer), path `SKILL.md` (v2.5.1)
+- **License:** MIT (LICENSE copyright: Siqi Chen)
+- **Author:** Siqi Chen ([@blader](https://github.com/blader)) — original author of the humanizer skill. Confirmed via LICENSE copyright line.
+- **Upstream commit pinned:** `8b3a17889fbf12bedae20974a3c9f9de746ed754` (2026-05-19, 19,587 stars, last push 2026-04-01)
+- **Source-switch note:** Initially fetched from `davila7/claude-code-templates` (v2.1.1, a redistribution layer over blader's work). Switched to direct upstream `blader/humanizer` (v2.5.1) for cleaner attribution and 4 additional patterns — davila7 was behind on upstream. The davila7-redistribution is documented in the watchlist as Lesson 1 (aggregator-direct-upstream preference).
+- **This marketplace:** Refined — added a German Variant section with 12 patterns (G1-G12: Nominalstil-Inflation, Floskeln, Übertriebene Gewissheit, Verstärker-Inflation, Meta-Ankündigungen, Höflichkeits-Boilerplate, Anglizismen-Schmatz, falsche Plurale, Konjunktiv-II-Höflichkeit, tautologische Aufzählungen, "Wichtig zu beachten"-Hedge, Übersetzungs-Fossile), a Lars-specific whitelist preserving fragments / direct address / conscious Anglicisms when `--profile lars` is set, a Modes table at the top of the body, empty-input + clean-input handling on Process step 1, and a refined frontmatter description per audit Quick Fix. English patterns 1-29 preserved verbatim from upstream.
 
 ### obsidian-markdown
 
