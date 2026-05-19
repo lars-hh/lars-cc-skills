@@ -1,0 +1,41 @@
+inspired_by: myl7/changelog-skill
+source_url: https://github.com/myl7/changelog-skill
+source_path: changelog/SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: fb04aa89c0b771fece60d77f3703b9ef1885f26b
+license: Apache-2.0
+version: 1.0.0
+original_author: "Yulong Ming (myl7) — i@myl7.org"
+fallback_source: valetivivek/md-craft-skill
+divergence_notes: |
+  Minimal-vanilla:
+  - Frontmatter name: changelog → changelog-skill (matches the plugin name
+    in marketplace.json; otherwise body verbatim, no content changes).
+  - LICENSE filename: upstream is `LICENSE.txt` at repo root, copied
+    locally as `LICENSE` so audit-license.sh finds it without a glob
+    change. SPDX-identifier and license text unchanged.
+known_deviations: |
+  - Pure markdown structure (no <objective>, <quick_start>, <success_criteria>
+    XML tags) — consistent with the four refined skills' v0.2 deferral
+    (humanizer, obsidian-markdown, security-auditor, karpathy-skills).
+notes: |
+  - First Apache-2.0 skill in the lars-cc-skills marketplace. All prior
+    skills are MIT (humanizer, obsidian-markdown, security-auditor,
+    karpathy-skills).
+  - NOTICE-file discipline does not apply here because upstream ships no
+    NOTICE file. Verified 2026-05-19:
+    `gh api repos/myl7/changelog-skill/contents/NOTICE` → 404 "Not Found".
+    If upstream ever adds a NOTICE file, drift detection
+    (`scripts/check-upstream.sh`) will flag the commit change and a NOTICE
+    fetch must be added to the import workflow.
+  - Replaces the originally-considered
+    `ComposioHQ/awesome-claude-skills/changelog-generator` (rejected
+    2026-05-19 because the upstream had `"license": null` at the repo
+    level — see Lesson 7 in `marketplace-watchlist.md`).
+  - Upstream is the original author (Yulong Ming/myl7), not a
+    re-distributor — no Aggregator-Risk-Hunt needed.
+  - Last upstream activity: 2026-04-14.
+  - Bus-factor: medium. Single maintainer, but the skill is small
+    enough that the fallback_source pattern (valetivivek/md-craft-skill)
+    can cover if myl7 disappears. fallback_source not yet verified for
+    license — verify when needed.

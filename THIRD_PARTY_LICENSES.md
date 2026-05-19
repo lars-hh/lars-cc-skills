@@ -37,10 +37,11 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 
 ### changelog-skill
 
-- **Upstream:** [myl7/changelog-skill](https://github.com/myl7/changelog-skill)
-- **License:** Apache-2.0 (NOTICE file preserved at `skills/changelog-skill/NOTICE` if upstream has one)
-- **Author:** myl7
-- **This marketplace:** Vanilla. Replaces the originally-considered `ComposioHQ/awesome-claude-skills/changelog-generator` which had no license.
+- **Upstream:** [myl7/changelog-skill](https://github.com/myl7/changelog-skill), path `changelog/SKILL.md`
+- **License:** Apache-2.0 — upstream ships it as `LICENSE.txt`; this marketplace copies it verbatim as `skills/changelog-skill/LICENSE` so the repo's `audit-license.sh` finds it without a glob change. **No NOTICE file** in upstream (verified 2026-05-19), so no NOTICE preservation is required.
+- **Author:** Yulong Ming ([@myl7](https://github.com/myl7)) — i@myl7.org. Original author, not a redistributor.
+- **Upstream commit pinned:** `fb04aa89c0b771fece60d77f3703b9ef1885f26b` (last upstream activity 2026-04-14)
+- **This marketplace:** Minimal-vanilla — single allowed change is the frontmatter rename `name: changelog` → `name: changelog-skill` to match the plugin name in `marketplace.json`. Body is verbatim. Replaces the originally-considered `ComposioHQ/awesome-claude-skills/changelog-generator` (rejected 2026-05-19 because the upstream had `"license": null` at the repo level — see Lesson 7 in `marketplace-watchlist.md`).
 
 ### karpathy-skills
 
