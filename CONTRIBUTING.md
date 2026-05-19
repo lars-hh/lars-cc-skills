@@ -25,12 +25,18 @@ This marketplace curates skills from across the Claude Code ecosystem, refines t
 
 ## Refinement vs. Vanilla
 
-A skill can enter the marketplace **vanilla** (verbatim from upstream) or **refined** (modified with `taches:audit-skill`, `taches:heal-skill`, custom additions). Both are fine. Either way:
+A skill can enter the marketplace **vanilla** (verbatim from upstream) or **refined** (modified with marketplace-specific additions). Both are fine. Either way:
 
 - `origin.yaml` records the upstream source, the last upstream check, and `divergence_notes` describing any modifications
 - `THIRD_PARTY_LICENSES.md` lists the original author and license
 
-See `docs/veredelung-workflow.md` (German for "refinement workflow") for the 8-step process.
+See `docs/veredelung-workflow.md` (German for "refinement workflow") for the 10-step process. Refined skills use three tools in defined steps:
+
+- **`/taches-cc-resources:create-plan`** (Step 0) — generates a phase sub-plan
+- **`Skill(skill-creator)`** (Step 3) — writing-patterns checklist for new sections (not the full eval/benchmark loop, which is reserved for v0.2 from-scratch skills)
+- **`Agent(subagent_type: "taches-cc-resources:skill-auditor")`** (Steps 2 + 7) — baseline audit before refinement, re-audit after
+
+Vanilla skills use a shorter path — see the Vanilla-import shortcut section in `docs/veredelung-workflow.md`.
 
 ## License audit
 
