@@ -52,6 +52,18 @@ Resolution options (in priority order):
 
 Option 1 is what we did for multica-ai. Document the PR/issue URL in `origin.yaml notes:`.
 
+## LICENSE-filename edge case
+
+Some upstreams ship the license as `LICENSE.txt`, `LICENSE.md`, or `COPYING` rather than the bare `LICENSE` filename that `scripts/audit-license.sh` checks for. The script does NOT support multiple filename globs — it expects exactly `skills/<name>/LICENSE`.
+
+**Resolution:** copy the upstream file verbatim into `skills/<name>/LICENSE` (no symlink — atomic content, not a reference). Document the rename in `origin.yaml divergence_notes` so the lineage is auditable.
+
+**Example from Phase 2.5** (changelog-skill): upstream `myl7/changelog-skill` ships `LICENSE.txt`. We copied it as `LICENSE` and noted in `divergence_notes`:
+
+> LICENSE filename: upstream is `LICENSE.txt`, copied locally as `LICENSE` so audit-license.sh finds it without a glob change. SPDX identifier and license text unchanged.
+
+**Why not patch the script to accept multiple filenames?** Defense in depth — the marketplace's standard filename is `LICENSE` (no extension). A single canonical name means no ambiguity about what the audit script reads. The rename happens once at import time, then never again.
+
 ## Automation
 
 ```bash
