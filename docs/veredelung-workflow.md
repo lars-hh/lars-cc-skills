@@ -23,6 +23,19 @@
 | `skill-creator` | skill | `Skill(skill="skill-creator")` or read its SKILL.md as a checklist | 3 |
 | `skill-auditor` | subagent | `Agent(subagent_type: "taches-cc-resources:skill-auditor")` | 2, 7 |
 
+## Tool-Mapping pro Phase-Typ
+
+Not every phase calls every tool. The mapping below is the canonical reference — match the phase type, apply the listed tools, skip the rest.
+
+| Phase type | create-plan (Step 0) | skill-creator (Step 3) | skill-auditor |
+|------------|----------------------|------------------------|---------------|
+| **Refined skill** (e.g., humanizer, obsidian-markdown, security-auditor, karpathy-skills) | **YES** — required | YES — writing-patterns checklist; full eval loop reserved for v0.2 | **YES (dual)** — baseline (Step 2) + re-audit (Step 7), audit-fix commit |
+| **Vanilla skill, simple license (MIT)** (e.g., caveman, jq) | OPTIONAL | NO | **YES (single)** — one sanity compliance audit (Step 7 only) |
+| **Vanilla skill, license complication** (Apache-2.0 / BSD variants / LICENSE-File renames / NOTICE handling) | **YES** | NO | **YES (single)** |
+| **Vanilla CLI-wrapper** (e.g., repomix) | OPTIONAL | NO — wrapper body trivial | **YES (single)** for the wrapper SKILL.md |
+| **Docs-only phase** (e.g., Phase 4 README + THIRD_PARTY_LICENSES sweep) | **YES** | NO | NO for skill-auditor; if shipping slash commands, use `taches-cc-resources:slash-command-auditor` |
+| **Launch phase** (e.g., Phase 5 `gh repo create` + install tests + tag) | **YES** — launch-checklist sub-plan | NO | **YES** — final `marketplace_audit.sh --all` sweep (the tool built in security-auditor, not the agent) |
+
 **Note on `skill-creator` scope here:** for marketplace v0.1 veredelung we use only the
 "Write the SKILL.md", "Writing Patterns" and "Writing Style" sections as a
 checklist when drafting new sections (e.g., the GSD-abgrenzung section in
@@ -224,8 +237,21 @@ Signs to step back:
 
 For vanilla skills (no refinement intended):
 
-1. Step 1 (source import + LICENSE)
-2. Write origin.yaml with `divergence_notes: vanilla`
-3. Step 9 (verification + commit)
+1. Step 0 (create-plan) — OPTIONAL. Required when the phase has license
+   complications (Apache-2.0 / BSD variants / missing LICENSE file at
+   upstream / LICENSE.txt rename / NOTICE-file discipline) or a structural
+   complication (skill lives in upstream subdirectory, CLI-wrapper, etc.).
+2. Step 1 — source import + LICENSE (or LICENSE.txt renamed to LICENSE)
+   + NOTICE if upstream ships one.
+3. Write `origin.yaml` with `divergence_notes: vanilla` (plus any minimal
+   forced changes like a frontmatter `name` rename for plugin parity).
+4. Step 5 (test) — encouraged but not blocking.
+5. Step 7 (single audit via skill-auditor) — RECOMMENDED for vanilla too.
+   The dual-audit pattern (Steps 2 + 7) is reserved for refined skills.
+6. Step 8 (audit fixes) — only if Step 7 reports issues (usually 0-2 quick
+   fixes for vanilla, no criticals).
+7. Step 9 — verification scripts + commit(s).
 
-Skip steps 0, 2, 3, 7, 8. Step 5 (test) is encouraged but not blocking.
+Skip steps 2, 3, 4 (no baseline audit, no structural skeleton, no manual
+customization since the skill is taken verbatim apart from minimal
+name-field adjustments).
