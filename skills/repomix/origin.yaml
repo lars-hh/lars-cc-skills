@@ -1,0 +1,35 @@
+inspired_by: yamadashy/repomix
+source_url: https://github.com/yamadashy/repomix
+source_path: README.md (upstream documentation source; no upstream SKILL.md exists)
+last_upstream_check: 2026-05-19
+upstream_commit: fabc367d329e65ef5d6afb8edb4d141801efaf26
+license: MIT
+version: 1.0.0
+original_author: "Kazuki Yamada (yamadashy) — https://github.com/yamadashy"
+divergence_notes: |
+  Wrapper SKILL.md — NOT a vanilla import. The upstream
+  `yamadashy/repomix` is a CLI tool, not a Claude Code skill. There is
+  no upstream `SKILL.md` to copy. This file is a marketplace-authored
+  wrapper that documents the CLI, its installation, and the contexts in
+  which Claude should reach for it. The wrapper is licensed under the
+  marketplace's MIT umbrella; the CLI itself is also MIT (Copyright 2024
+  Kazuki Yamada), shipped verbatim in `LICENSE` alongside this skill.
+known_deviations: |
+  - Pure markdown structure (no XML tags) — consistent with the other
+    skills in this marketplace. v0.2 deferral.
+  - This is a wrapper, not a vanilla import. The "vanilla skill" tag in
+    the marketplace.json description is technically inaccurate; consider
+    re-labelling to "CLI-wrapper skill" for v0.2.
+notes: |
+  - 25,088 stars on the upstream CLI (verified 2026-05-19). Established
+    project, multi-platform (npm + brew). Bus-factor: low.
+  - Users must install the CLI separately (`brew install repomix` or
+    `npm install -g repomix`). The wrapper SKILL.md leads with this
+    requirement in the "Installation" section and the `allowed-tools`
+    declaration includes `Bash(brew:*), Bash(npm:*)` to make the
+    install path explicit.
+  - The wrapper documents only the most common CLI flags. For deeper
+    configuration (custom `repomix.config.json`, output templates, CI
+    integration), the SKILL.md points to the upstream README rather than
+    duplicating it — keeps drift minimal.
+  - No reference subdirectory needed. Everything is in SKILL.md.
