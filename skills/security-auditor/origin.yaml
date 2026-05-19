@@ -4,6 +4,7 @@ source_path: engineering/skills/skill-security-auditor
 last_upstream_check: 2026-05-19
 upstream_commit: 6bf737fb4aee65ed187a8a64b311e32fead2ff05
 license: MIT
+version: 1.0.0
 original_author: "Alireza Rezvani (alirezarezvani) — https://github.com/alirezarezvani"
 divergence_notes: |
   - Renamed frontmatter `name: "skill-security-auditor"` → `name: security-auditor`

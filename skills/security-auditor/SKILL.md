@@ -1,6 +1,7 @@
 ---
 name: security-auditor
 version: 1.0.0
+allowed-tools: Read, Bash(python3:*), Bash(skills/security-auditor/scripts/*:*)
 description: |
   Security audit and vulnerability scanner for AI agent skills before installation.
   Use when: (1) evaluating a skill from an untrusted source, (2) auditing a skill
@@ -11,9 +12,9 @@ description: |
   (7) verifying file system access stays within skill boundaries, (8) running the
   lars-cc-skills marketplace compliance check (LICENSE present, allowed-tools
   whitelist, frontmatter schema) — activate with `scripts/marketplace_audit.sh`.
-  Triggers: "audit this skill", "is this skill safe", "scan skill for security",
-  "check skill before install", "skill security check", "skill vulnerability scan",
-  "marketplace compliance check".
+  Activation hints: "audit this skill", "is this skill safe", "scan skill for
+  security", "check skill before install", "skill security check", "skill
+  vulnerability scan", "marketplace compliance check".
 license: MIT
 ---
 
@@ -175,14 +176,16 @@ wrapper that enforces the three rules every skill in the `lars-cc-skills` market
 must follow before it can be merged.
 
 ```bash
+# Run from the repo root (where skills/ lives).
+
 # Run all three marketplace checks against one skill
-scripts/marketplace_audit.sh skills/<skill-name>/
+./skills/security-auditor/scripts/marketplace_audit.sh skills/<skill-name>/
 
 # Run against every skill in a repo (loops skills/*/)
-scripts/marketplace_audit.sh --all skills/
+./skills/security-auditor/scripts/marketplace_audit.sh --all skills/
 
 # Combined: generic security audit + marketplace compliance
-scripts/marketplace_audit.sh --with-security skills/<skill-name>/
+./skills/security-auditor/scripts/marketplace_audit.sh --with-security skills/<skill-name>/
 ```
 
 The wrapper produces a unified `PASS / WARN / FAIL` verdict and exits non-zero on

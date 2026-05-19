@@ -14,6 +14,9 @@
 #   marketplace_audit.sh --with-security skills/<name>/
 
 set -o pipefail
+# Note: not using `set -e` because per-skill failures are aggregated into the
+# WORST accumulator; an early exit would skip later skills in --all mode.
+# Empty-array reads are why -u is also off (bash 3 on macOS doesn't gate on +).
 
 ALLOWED_LICENSES=("MIT" "Apache-2.0" "BSD-2-Clause" "BSD-3-Clause" "ISC")
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -63,8 +66,11 @@ audit_skill() {
   fi
 
   # --- Origin.yaml SPDX consistency ---
+  # Refined skills (frontmatter has version:) MUST have origin.yaml — lineage gate.
   local declared_license=""
+  local has_origin=0
   if [[ -f "$skill_dir/origin.yaml" ]]; then
+    has_origin=1
     declared_license=$(awk -F': *' '/^license:/{print $2; exit}' "$skill_dir/origin.yaml" | tr -d '"' | tr -d "'" | tr -d ' ')
     if [[ -n "$declared_license" ]]; then
       local allowed=0
@@ -74,6 +80,15 @@ audit_skill() {
       if (( allowed == 0 )); then
         issues+=("license '$declared_license' not in allowed list (${ALLOWED_LICENSES[*]})")
       fi
+    else
+      issues+=("origin.yaml present but no 'license:' field")
+    fi
+  fi
+
+  # Refined-skill gate: presence of `version:` in SKILL.md frontmatter requires origin.yaml
+  if [[ -f "$skill_dir/SKILL.md" ]] && (( has_origin == 0 )); then
+    if awk '/^---$/{c++; if(c==2) exit} c==1 && /^version:/{found=1} END{exit !found}' "$skill_dir/SKILL.md"; then
+      issues+=("refined skill (version: declared) but origin.yaml missing — required for lineage tracking")
     fi
   fi
 
@@ -92,7 +107,7 @@ text = path.read_text()
 m = re.match(r"^---\n(.*?)\n---", text, re.DOTALL)
 if not m:
     print("FAIL: no YAML frontmatter delimited by ---", file=sys.stderr)
-    sys.exit(1)
+    sys.exit(2)
 
 fm = m.group(1)
 
