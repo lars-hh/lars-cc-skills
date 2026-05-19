@@ -13,6 +13,20 @@ divergence_notes: |
 known_deviations: |
   - Pure markdown structure (no XML tags) — consistent with the other
     vanilla and refined skills in this marketplace. v0.2 deferral.
+  - Description reads as a tool definition ("JSON processor for filtering,
+    transforming, and manipulating JSON data in command line.") rather than
+    an invocation trigger. The skill-auditor 2026-05-19 review proposed
+    rewriting to "Provides jq filter syntax and command patterns for
+    querying, transforming, and reshaping JSON data at the command line.
+    Use when composing or debugging jq filter expressions." Not fixed here
+    because changing the description body breaks vanilla status. v0.2
+    deferral.
+  - Grammar in description: "in command line" → "at the command line".
+    Same v0.2 deferral rationale.
+  - `allowed-tools` not declared. For vanilla skills this is acceptable
+    per the workflow doc, but a future refinement should add
+    `allowed-tools: Bash(jq:*), Read` since every example in the body
+    shells out to `jq`.
 notes: |
   - 310 stars on the upstream repo (verified 2026-05-19). Smaller than the
     other vanilla sources but the skill itself is focused and high-quality:

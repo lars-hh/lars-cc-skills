@@ -2,7 +2,7 @@
 name: repomix
 version: 1.0.0
 license: MIT
-allowed-tools: Bash(repomix:*), Bash(brew:*), Bash(npm:*), Read
+allowed-tools: Bash(repomix:*), Read
 description: |
   Pack an entire repository (or a subdirectory / a curated file set) into a
   single AI-friendly file, ready to feed into a long-context LLM session.
@@ -13,22 +13,29 @@ description: |
   review or audit and want one file to scroll through, or when you want
   to feed your own codebase to a different LLM for comparison.
   Activation hints: "pack repo", "bundle the repo", "feed codebase to LLM",
-  "cross-project context", "single-file dump", "repomix", "share this
-  codebase".
+  "cross-project context", "repomix".
 ---
 
 # repomix — Repository Packer
 
-`repomix` is a CLI tool that walks a directory tree, applies `.gitignore`
-and a configurable include/exclude policy, and concatenates everything
-into one annotated file (XML, Markdown, or plain text) sized to fit
-inside an LLM context window.
+**Prerequisite:** the `repomix` CLI must be installed once before this skill
+can do anything. Run `repomix --version`; if it errors, see Setup below.
+
+`repomix` walks a directory tree, applies `.gitignore` and a configurable
+include/exclude policy, and concatenates everything into one annotated
+file (XML, Markdown, JSON, or plain text) sized to fit inside an LLM
+context window.
 
 This skill is a thin wrapper that documents the CLI for Claude Code use.
 It does not ship a re-implementation — install the upstream binary once,
 then invoke as shown below.
 
-## Installation (one-time)
+## Setup (one-time)
+
+The install commands are intentionally **not** in this skill's
+`allowed-tools` declaration — they are session-external operations that
+the user runs at the shell, not commands Claude needs to issue
+repeatedly.
 
 ```bash
 # macOS / Linux via Homebrew
@@ -38,7 +45,7 @@ brew install repomix
 npm install -g repomix
 ```
 
-Confirm: `repomix --version` should print a 0.x.x number.
+Confirm: `repomix --version` should print a version number.
 
 ## Quick Start
 
@@ -89,18 +96,24 @@ of truth for the packed view.
 ## Tuning the include set
 
 ```bash
-# Estimate token count before packing (no file written)
-repomix . --token-count
+# Show a file tree annotated with per-file token counts (lets you decide
+# what to exclude before packing)
+repomix . --token-count-tree
 
-# Show a tree of what would be included given current ignore rules
-repomix . --tree
+# Same, but only show files at or above a token threshold
+repomix . --token-count-tree 1000
 
-# Compress comments + reduce whitespace (cheaper context)
+# Compress structure (Tree-sitter extracts key elements, drops bodies)
 repomix . --compress
+
+# Choose tokenizer model (defaults to o200k_base / GPT-4o)
+repomix . --token-count-encoding cl100k_base
 ```
 
 `--compress` typically saves 30-50% of tokens. Recommended for any
-codebase you are about to feed into an LLM session.
+codebase you are about to feed into an LLM session. Normal `repomix .`
+output already reports total token counts at the end — the
+`--token-count-tree` flag adds the per-file breakdown.
 
 ## When NOT to use this skill
 

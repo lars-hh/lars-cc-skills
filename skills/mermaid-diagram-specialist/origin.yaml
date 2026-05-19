@@ -15,6 +15,16 @@ divergence_notes: |
 known_deviations: |
   - Pure markdown structure (no XML tags) — consistent with the other
     vanilla and refined skills in this marketplace. v0.2 deferral.
+  - Description trigger-word tail ("Triggers include requests to 'diagram',
+    'visualize', 'model', 'map out', 'show the flow'...") belongs in the
+    skill body, not the description, per the skill-auditor 2026-05-19
+    review. Not fixed here because changing the body would break vanilla
+    status. v0.2 deferral: trim the description and move the trigger list
+    into a "When to invoke" section in the body.
+  - references/ links use redundant `[path](path)` form rather than
+    descriptive labels (e.g., `[Class Diagrams — domain modeling](references/class-diagrams.md)`).
+    Same v0.2 deferral rationale: vanilla preservation now, label-rewrite
+    when the skill is next touched for a refinement.
 notes: |
   - davila7/claude-code-templates is an aggregator repo (27k+ stars at
     time of import). Per the marketplace's Lesson 4, we tried to find a
