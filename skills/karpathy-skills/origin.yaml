@@ -1,0 +1,63 @@
+inspired_by: multica-ai/andrej-karpathy-skills
+source_url: https://github.com/multica-ai/andrej-karpathy-skills
+source_path: skills/karpathy-guidelines/SKILL.md
+last_upstream_check: 2026-05-19
+upstream_commit: 2c606141936f1eeef17fa3043a72095b4765b9c2
+license: MIT
+version: 1.0.0
+original_author: "forrestchang / multica-ai (Karpathy-inspired, NOT by Karpathy)"
+divergence_notes: |
+  - Renamed frontmatter `name: karpathy-guidelines` → `name: karpathy-skills`
+    to match the marketplace plugin name in marketplace.json and remove the
+    ambiguity that the "guidelines" suffix invited (some users read it as
+    "official Karpathy guidelines"; the new name reads as "Karpathy-inspired
+    skills bundle").
+  - Added `version: 1.0.0`, `allowed-tools: Read, Edit, Write`, refined
+    `description:` to lead with the authorship-correction sentence and
+    surface activation hints, matching the refined-skill frontmatter
+    convention shared with humanizer, obsidian-markdown, security-auditor.
+  - Added new top-level "Source & attribution" section that explicitly
+    states (1) Karpathy inspired but did not author this skill, (2) the
+    upstream is multica-ai/forrestchang under MIT, (3) any "by Karpathy"
+    references in the wild are community mis-attribution. The original
+    Karpathy X-post link is preserved in this new section.
+  - Added new section "When to use this skill" that frames the skill as a
+    one-page behavioral checklist (not an execution framework), making the
+    abstraction level explicit.
+  - Added new section "Relation to other goal-driven frameworks" at the end
+    that bounds Principle 4 (Goal-Driven Execution) against GSD and
+    Superpowers — they coexist, they don't compete. Skill-creator's writing
+    patterns applied: imperative form, theory-of-mind, table for clarity,
+    explicit pair-with guidance, lean prose.
+  - All four principles (Think Before Coding, Simplicity First, Surgical
+    Changes, Goal-Driven Execution) preserved verbatim from upstream.
+known_deviations: |
+  - Pure markdown structure (no <objective>, <quick_start>, <success_criteria>
+    XML tags) — deviates from the auditor's pure-XML standard. Decision:
+    deferred to v0.2 as a documented deviation, consistent with the same
+    deferral on humanizer + obsidian-markdown + security-auditor. Rationale:
+    the upstream is markdown, the content is a 4-principle behavioral
+    checklist that reads naturally as prose, and XML migration would not
+    improve clarity for this skill type.
+notes: |
+  - Upstream repo has 136,954 stars (verified 2026-05-19) but no LICENSE
+    file at repo root — `gh api repos/multica-ai/andrej-karpathy-skills`
+    returns `"license": null`. Manifest declares MIT in
+    `.claude-plugin/plugin.json` (verified: `{license: "MIT", author:
+    {name: "forrestchang"}}` at the pinned commit).
+  - **Lars-action follow-up:** Open an upstream PR to multica-ai/
+    andrej-karpathy-skills to add a LICENSE file matching the manifest-MIT
+    declaration. Until that lands, this skill ships a locally-reconstructed
+    LICENSE with a header comment naming the gap (see `skills/karpathy-skills/
+    LICENSE`).
+  - Upstream author chain: repo transferred from `forrestchang/andrej-
+    karpathy-skills` to `multica-ai/andrej-karpathy-skills`. Authored by
+    Jiayuan Zhang (@forrestchang7@gmail.com, X: @jiayuan_jy) with co-commits
+    from Shehab Tarek and Andriy Zakharko. Verified against Reddit
+    speculation that "this is Anthropic's" or "by Karpathy" — both false.
+  - Karpathy's own GitHub (github.com/karpathy, 185k+ followers) hosts no
+    Claude Code skills as of 2026-05-19. Only LLM101n, llm.c, nanogpt, and
+    llm-council.
+  - Bus-factor: low. 136k stars + active multica-ai org. fallback_source
+    not strictly necessary, but the skill's content is small enough to
+    reconstruct from the Karpathy X-post if the upstream ever disappears.

@@ -45,9 +45,10 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 ### karpathy-skills
 
 - **Upstream:** [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), path `skills/karpathy-guidelines/SKILL.md`
-- **License:** MIT (declared in plugin manifest; upstream LICENSE file pending — see GitHub issue/PR if filed)
-- **Authors:** Jiayuan Zhang (forrestchang7) and Andriy Zakharko, Shehab Tarek. Inspired by Andrej Karpathy's public tweets on LLM coding pitfalls (see [X-post, 2026-01-26](https://x.com/karpathy/status/2015883857489522876)). **Not authored by Karpathy.**
-- **This marketplace:** Refined — owner attribution corrected, Karpathy clearly labelled as inspiration source not author.
+- **License:** MIT — declared in `.claude-plugin/plugin.json` manifest. Upstream LICENSE file is missing; this marketplace ships a locally-reconstructed LICENSE in `skills/karpathy-skills/LICENSE` with a header comment naming the gap. A follow-up upstream PR to multica-ai is tracked as a Lars-action in `skills/karpathy-skills/origin.yaml notes`.
+- **Authors:** Jiayuan Zhang ([@forrestchang](https://github.com/forrestchang)) and contributors under the [multica-ai](https://github.com/multica-ai) org (co-commits from Shehab Tarek, Andriy Zakharko). Inspired by Andrej Karpathy's public X-post on LLM coding pitfalls ([X-post, 2026-01-26](https://x.com/karpathy/status/2015883857489522876)). **Not authored by Karpathy himself.**
+- **Upstream commit pinned:** `2c606141936f1eeef17fa3043a72095b4765b9c2` (2026-05-19)
+- **This marketplace:** Refined — frontmatter `name` corrected from `karpathy-guidelines` to `karpathy-skills` (removes the "official Karpathy guidelines" ambiguity), added version/license/allowed-tools/refined description, new "Source & attribution" section explicitly correcting the community mis-attribution, new "When to use this skill" framing, new "Relation to other goal-driven frameworks" section bounding Principle 4 against GSD and Superpowers. All four principles preserved verbatim.
 
 ### humanizer
 
