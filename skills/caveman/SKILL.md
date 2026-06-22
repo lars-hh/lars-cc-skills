@@ -8,6 +8,8 @@ description: >
   "be brief", or invokes /caveman. Also auto-triggers when token efficiency is requested.
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „caveman".
+
 Respond terse like smart caveman. All technical substance stay. Only fluff die.
 
 ## Persistence

@@ -18,6 +18,8 @@ description: |
 license: MIT
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „security-auditor".
+
 # Security Auditor
 
 Scan and audit AI agent skills for security risks before installation. Produces a

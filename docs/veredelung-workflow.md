@@ -181,6 +181,25 @@ notes: |
 Be specific. "Customized for our needs" is not useful; "Added German pattern
 list (12 patterns G1-G12)" is.
 
+### 6b. Record learnings
+
+After building/testing — and whenever later use surfaces a problem or insight — append to
+`docs/skill-learnings.md` under the skill's `## <name>` section:
+
+```
+- YYYY-MM-DD (Build): <what you learned>
+```
+
+Distinct from `origin.yaml`: that file holds upstream attribution + deliberate divergence
+(static, per refinement); `docs/skill-learnings.md` holds *running* findings from
+use/test/maintenance (grows over time). Each `SKILL.md` carries a Block-A pointer to its section.
+Learnings live in the repo so they travel to every clone and cloud session — never in a personal vault.
+
+**Versioning note:** update detection is commit-SHA-based — plugins use `source: directory` with
+**no per-plugin `version` in `marketplace.json`**, so every push is an update. The `version:` in
+`origin.yaml`/`SKILL.md` is informational only (e.g. mirroring upstream). Do **not** add a per-plugin
+`version` to `marketplace.json` — it would override SHA detection and force manual bumps.
+
 ### 7. Re-audit
 
 ```

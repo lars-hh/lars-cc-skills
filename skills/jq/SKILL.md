@@ -3,6 +3,8 @@ name: jq
 description: JSON processor for filtering, transforming, and manipulating JSON data in command line.
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „jq".
+
 # jq — JSON Processor
 
 **Basic Operations**

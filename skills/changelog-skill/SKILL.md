@@ -12,6 +12,8 @@ metadata:
   author: Yulong Ming <i@myl7.org>
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „changelog-skill".
+
 Follow [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/).
 
 ## Template

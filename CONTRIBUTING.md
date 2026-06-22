@@ -41,3 +41,18 @@ Vanilla skills use a shorter path — see the Vanilla-import shortcut section in
 ## License audit
 
 See `docs/license-audit.md` for the checklist every skill must pass before release.
+
+## Learnings & maintenance
+
+- **Skill learnings live in `docs/skill-learnings.md`** — one `## <skill>` section each, append-only
+  with a dated entry (`- YYYY-MM-DD (Label): …`). Each `SKILL.md` carries a Block-A pointer to its
+  section. This is for *running* findings from use/test/maintenance; upstream attribution and
+  deliberate divergence stay in `origin.yaml`. Do **not** put public-skill learnings in a personal
+  vault — they ship with the repo so they reach every clone and cloud session.
+- **Versioning is commit-SHA-based.** Plugins use `source: directory` and carry **no per-plugin
+  `version`** in `marketplace.json` — so every push is detected as an update (`/plugin marketplace
+  update` → `/plugin update`). **Do not add a per-plugin `version` field to `marketplace.json`** — it
+  would override SHA detection and require a manual bump on every change. Any `version` in `SKILL.md`
+  or `origin.yaml` is informational only (e.g. mirroring upstream), not an update trigger.
+- **Single source of truth:** edit skills only in this repo. Installed/cached copies are downstream
+  and get overwritten on update.

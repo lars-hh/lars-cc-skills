@@ -17,6 +17,8 @@ description: |
   coding", "goal-driven execution".
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „karpathy-skills".
+
 # Karpathy-inspired Coding Guidelines
 
 ## Source & attribution

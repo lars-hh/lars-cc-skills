@@ -16,6 +16,8 @@ description: |
   "cross-project context", "repomix".
 ---
 
+> **Learnings (Maintainer):** bekannte Probleme/Erkenntnisse zu diesem Skill in `docs/skill-learnings.md` → Sektion „repomix".
+
 # repomix — Repository Packer
 
 **Prerequisite:** the `repomix` CLI must be installed once before this skill
