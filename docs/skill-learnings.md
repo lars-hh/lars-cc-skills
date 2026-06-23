@@ -73,3 +73,19 @@ nur ergänzen. Pflege durch den Maintainer (Lars) — Consumer haben kein Write-
 ## debug-like-expert
 
 *(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## create-agent-skills
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## create-slash-commands
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## create-subagents
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## setup-ralph
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*

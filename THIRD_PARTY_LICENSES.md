@@ -112,3 +112,35 @@ If you find an attribution error, missing license file, or upstream source that 
 - **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
 - **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
 - **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape to Lars conventions (Markdown gates, German, allowed-tools) deferred → Bucket-1+ (see `Projects/lars-cc-skills.md` v0.2).
+
+### create-agent-skills
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/create-agent-skills/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape deferred → Bucket-1+.
+
+### create-slash-commands
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/create-slash-commands/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape deferred → Bucket-1+.
+
+### create-subagents
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/create-subagents/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape deferred → Bucket-1+.
+
+### setup-ralph
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/setup-ralph/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape deferred → Bucket-1+.

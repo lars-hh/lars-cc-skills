@@ -1,0 +1,13 @@
+inspired_by: glittercowboy/taches-cc-resources
+source_url: https://github.com/glittercowboy/taches-cc-resources
+source_path: skills/create-slash-commands/SKILL.md
+last_upstream_check: 2026-06-23
+upstream_commit: 0d915b80b95f9889673e1dc6a9059ed239764cde
+license: MIT
+original_author: "Lex Christopherson (glittercowboy) — https://github.com/glittercowboy"
+divergence_notes: |
+  - Vanilla 1:1 As-is-Import aus taches-cc-resources (MIT). Keine inhaltliche Änderung.
+  - Reshape auf Lars-Konventionen (Markdown-Gates, deutsch, allowed-tools) deferred → Bucket-1+.
+
+known_deviations: |
+  - Pure-XML-Struktur + englisch (taches-Original) — bewusst unverändert bis zum Reshape.

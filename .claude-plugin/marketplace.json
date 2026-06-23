@@ -111,6 +111,42 @@
         "source": "directory",
         "path": "./skills/debug-like-expert"
       }
+    },
+    {
+      "name": "create-agent-skills",
+      "description": "Expert guidance for authoring, building, and refining Claude Code Skills (SKILL.md structure + best practices).",
+      "category": "coding-discipline",
+      "source": {
+        "source": "directory",
+        "path": "./skills/create-agent-skills"
+      }
+    },
+    {
+      "name": "create-slash-commands",
+      "description": "Expert guidance for creating Claude Code slash commands (YAML config, arguments, structure).",
+      "category": "coding-discipline",
+      "source": {
+        "source": "directory",
+        "path": "./skills/create-slash-commands"
+      }
+    },
+    {
+      "name": "create-subagents",
+      "description": "Expert guidance for creating and using Claude Code subagents and the Task tool.",
+      "category": "coding-discipline",
+      "source": {
+        "source": "directory",
+        "path": "./skills/create-subagents"
+      }
+    },
+    {
+      "name": "setup-ralph",
+      "description": "Set up Geoffrey Huntley's Ralph Wiggum autonomous coding loop (structure, prompts, backpressure).",
+      "category": "productivity",
+      "source": {
+        "source": "directory",
+        "path": "./skills/setup-ralph"
+      }
     }
   ]
 }
