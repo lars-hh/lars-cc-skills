@@ -1,0 +1,13 @@
+inspired_by: glittercowboy/taches-cc-resources
+source_url: https://github.com/glittercowboy/taches-cc-resources
+source_path: "commands/* + agents/*"
+last_upstream_check: 2026-06-23
+upstream_commit: 0d915b80b95f9889673e1dc6a9059ed239764cde
+license: MIT
+original_author: "Lex Christopherson (glittercowboy) — https://github.com/glittercowboy"
+divergence_notes: |
+  - Selektiver 1:1 As-is-Import der KEEP-Commands+Agents (MIT). DROP: add-to-todos, check-todos, create-hook, research/* (8).
+  - Reshape (gate-hardened audit-skill, deutsch, Markdown) deferred → [[Projects/lars-cc-skills]] v0.2 + Grill [[artifacts/brainstorms/2026-06-23-audit-skill-gate-konventionen]].
+known_deviations: |
+  - Pure-XML + englisch (taches-Original) — bewusst unverändert bis zum Reshape.
+  - Bundle-Plugin (commands/+agents/), nicht die 1-Skill-1-Plugin-Konvention des restlichen Repos — Commands/Agents sind anderer Artefakt-Typ.

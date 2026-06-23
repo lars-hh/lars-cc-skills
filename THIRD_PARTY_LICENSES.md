@@ -144,3 +144,11 @@ If you find an attribution error, missing license file, or upstream source that 
 - **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
 - **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
 - **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape deferred → Bucket-1+.
+
+### taches-toolkit (commands + agents bundle)
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), paths `commands/*` + `agents/*`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Selective 1:1 as-is import of KEEP commands (16 top-level + consider/ 12) + 3 auditor agents. DROP: add-to-todos, check-todos, create-hook, research/* (8). Reshape deferred.

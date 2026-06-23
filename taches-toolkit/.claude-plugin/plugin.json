@@ -1,0 +1,8 @@
+{
+  "name": "taches-toolkit",
+  "description": "taches command + agent toolkit: consider:* (12 thinking models), /audit-* + 3 auditor agents, /heal-skill, /create-*, /run-*, /ask-me-questions, /whats-next, /debug, /setup-ralph. As-is import (MIT), reshape deferred.",
+  "author": {
+    "name": "Lex Christopherson (glittercowboy)",
+    "email": "lex@glittercowboy.com"
+  }
+}

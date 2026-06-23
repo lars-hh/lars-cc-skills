@@ -147,6 +147,15 @@
         "source": "directory",
         "path": "./skills/setup-ralph"
       }
+    },
+    {
+      "name": "taches-toolkit",
+      "description": "taches commands + agents: consider:* thinking models, /audit-* (+3 auditor agents), /heal-skill, /create-*, /run-*, /whats-next, /ask-me-questions. As-is, reshape deferred.",
+      "category": "coding-discipline",
+      "source": {
+        "source": "directory",
+        "path": "./taches-toolkit"
+      }
     }
   ]
 }
