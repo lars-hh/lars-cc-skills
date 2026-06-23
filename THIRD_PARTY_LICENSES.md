@@ -88,3 +88,27 @@ Run `./scripts/verify-attribution.sh` to check that every skill's `origin.yaml` 
 ## How to report issues
 
 If you find an attribution error, missing license file, or upstream source that has since gained a license (e.g., ComposioHQ may add one later), open an issue at https://github.com/lars-hh/lars-cc-skills/issues.
+
+### create-plans
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/create-plans/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape to Lars conventions (Markdown gates, German, allowed-tools) deferred → Bucket-1+ (see `Projects/lars-cc-skills.md` v0.2).
+
+### create-meta-prompts
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/create-meta-prompts/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape to Lars conventions (Markdown gates, German, allowed-tools) deferred → Bucket-1+ (see `Projects/lars-cc-skills.md` v0.2).
+
+### debug-like-expert
+
+- **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), path `skills/debug-like-expert/SKILL.md`
+- **License:** MIT (LICENSE copyright: 2025 Lex Christopherson)
+- **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
+- **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
+- **This marketplace:** Vanilla 1:1 as-is import (MIT). Reshape to Lars conventions (Markdown gates, German, allowed-tools) deferred → Bucket-1+ (see `Projects/lars-cc-skills.md` v0.2).

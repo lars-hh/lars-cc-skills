@@ -61,3 +61,15 @@ nur ergänzen. Pflege durch den Maintainer (Lars) — Consumer haben kein Write-
 ## security-auditor
 
 *(Upstream: alirezarezvani/claude-skills — refined: marketplace-compliance mode + `marketplace_audit.sh`.) Noch keine Learnings erfasst.*
+
+## create-plans
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## create-meta-prompts
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## debug-like-expert
+
+*(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
