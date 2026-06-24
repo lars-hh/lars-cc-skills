@@ -56,3 +56,29 @@ See `docs/license-audit.md` for the checklist every skill must pass before relea
   or `origin.yaml` is informational only (e.g. mirroring upstream), not an update trigger.
 - **Single source of truth:** edit skills only in this repo. Installed/cached copies are downstream
   and get overwritten on update.
+
+## marketplace.json — validated schema (2026-06-23)
+
+The v0.1.0 `marketplace.json` had two latent schema bugs that only surfaced on the first real
+`/plugin marketplace add` + install (install-tests never ran at launch). Correct structure:
+
+```jsonc
+{
+  "name": "lars-cc-skills",
+  "owner": { "name": "Lars Nowak", "email": "..." },   // OBJECT, not a string
+  "metadata": { "description": "...", "version": "0.1.0" },  // description+version live HERE, not top-level
+  "plugins": [
+    { "name": "caveman", "description": "...", "category": "...",
+      "source": "./skills/caveman" }                   // STRING path for local plugins
+  ]
+}
+```
+
+Two gotchas (both break silently until install):
+1. **`owner` must be an object** `{name, email}` — a string fails registration (`expected object, received string`).
+2. **Per-plugin `source` must be a string path** (`"./skills/<name>"`) for local dirs — the object form
+   `{"source": "directory", "path": "..."}` throws *"source type your Claude Code version does not support"*.
+
+Mirror a known-working marketplace (`ai-plugins`, `taches-cc-resources`) when in doubt. Run a real
+`/plugin marketplace add` + `/plugin install <one>@lars-cc-skills` as the actual acceptance test —
+`marketplace_audit.sh`/`verify-attribution.sh` do **not** catch these.
