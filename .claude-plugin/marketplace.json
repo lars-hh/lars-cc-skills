@@ -1,8 +1,13 @@
 {
   "name": "lars-cc-skills",
-  "owner": "lars-hh",
-  "description": "Curated Claude Code skills, refined for knowledge workers.",
-  "version": "0.1.0",
+  "owner": {
+    "name": "Lars Nowak",
+    "email": "lars.nowak@baqend.com"
+  },
+  "metadata": {
+    "description": "Curated Claude Code skills, refined for knowledge workers.",
+    "version": "0.1.0"
+  },
   "plugins": [
     {
       "name": "caveman",
