@@ -13,154 +13,103 @@
       "name": "caveman",
       "description": "Output token reduction via caveman-speak modes (lite/full/ultra).",
       "category": "productivity",
-      "source": {
-        "source": "directory",
-        "path": "./skills/caveman"
-      }
+      "source": "./skills/caveman"
     },
     {
       "name": "repomix",
       "description": "Pack a folder as single AI-readable file for cross-project context.",
       "category": "knowledge-management",
-      "source": {
-        "source": "directory",
-        "path": "./skills/repomix"
-      }
+      "source": "./skills/repomix"
     },
     {
       "name": "security-auditor",
       "description": "Audit a skill or plugin folder for supply-chain risks (LICENSE, allowed-tools, bash calls).",
       "category": "quality",
-      "source": {
-        "source": "directory",
-        "path": "./skills/security-auditor"
-      }
+      "source": "./skills/security-auditor"
     },
     {
       "name": "mermaid-diagram-specialist",
       "description": "Generate Mermaid diagrams (flowchart, sequence, ERD, C4, state, Gantt) from text descriptions.",
       "category": "visualization",
-      "source": {
-        "source": "directory",
-        "path": "./skills/mermaid-diagram-specialist"
-      }
+      "source": "./skills/mermaid-diagram-specialist"
     },
     {
       "name": "changelog-skill",
       "description": "Generate Keep-a-Changelog-conformant CHANGELOG.md from git log.",
       "category": "git",
-      "source": {
-        "source": "directory",
-        "path": "./skills/changelog-skill"
-      }
+      "source": "./skills/changelog-skill"
     },
     {
       "name": "karpathy-skills",
       "description": "Coding principles (Think Before, Simplicity First, Surgical Changes, Goal-Driven Execution). Karpathy-inspired, by forrestchang/multica-ai.",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/karpathy-skills"
-      }
+      "source": "./skills/karpathy-skills"
     },
     {
       "name": "humanizer",
       "description": "Remove AI-writing patterns (em-dash overuse, leverage, inflated symbolism). English + German variants.",
       "category": "writing",
-      "source": {
-        "source": "directory",
-        "path": "./skills/humanizer"
-      }
+      "source": "./skills/humanizer"
     },
     {
       "name": "obsidian-markdown",
       "description": "Generate valid Obsidian-flavored markdown (wikilinks, callouts, properties, embeds). Activate PARA-style path conventions with `wikilink_style: lars-para` or `--wikilink-style lars-para`.",
       "category": "knowledge-management",
-      "source": {
-        "source": "directory",
-        "path": "./skills/obsidian-markdown"
-      }
+      "source": "./skills/obsidian-markdown"
     },
     {
       "name": "jq",
       "description": "Translate natural-language JSON questions into jq expressions.",
       "category": "data",
-      "source": {
-        "source": "directory",
-        "path": "./skills/jq"
-      }
+      "source": "./skills/jq"
     },
     {
       "name": "create-plans",
       "description": "Hierarchical, Claude-executable project plans (briefs, roadmaps, phase plans, handoffs) for solo agentic development.",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/create-plans"
-      }
+      "source": "./skills/create-plans"
     },
     {
       "name": "create-meta-prompts",
       "description": "Optimized prompts for Claude-to-Claude pipelines — multi-stage research → plan → execute workflows.",
       "category": "productivity",
-      "source": {
-        "source": "directory",
-        "path": "./skills/create-meta-prompts"
-      }
+      "source": "./skills/create-meta-prompts"
     },
     {
       "name": "debug-like-expert",
       "description": "Deep-analysis debugging mode for complex issues — systematic root-cause investigation.",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/debug-like-expert"
-      }
+      "source": "./skills/debug-like-expert"
     },
     {
       "name": "create-agent-skills",
       "description": "Expert guidance for authoring, building, and refining Claude Code Skills (SKILL.md structure + best practices).",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/create-agent-skills"
-      }
+      "source": "./skills/create-agent-skills"
     },
     {
       "name": "create-slash-commands",
       "description": "Expert guidance for creating Claude Code slash commands (YAML config, arguments, structure).",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/create-slash-commands"
-      }
+      "source": "./skills/create-slash-commands"
     },
     {
       "name": "create-subagents",
       "description": "Expert guidance for creating and using Claude Code subagents and the Task tool.",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./skills/create-subagents"
-      }
+      "source": "./skills/create-subagents"
     },
     {
       "name": "setup-ralph",
       "description": "Set up Geoffrey Huntley's Ralph Wiggum autonomous coding loop (structure, prompts, backpressure).",
       "category": "productivity",
-      "source": {
-        "source": "directory",
-        "path": "./skills/setup-ralph"
-      }
+      "source": "./skills/setup-ralph"
     },
     {
       "name": "taches-toolkit",
       "description": "taches commands + agents: consider:* thinking models, /audit-* (+3 auditor agents), /heal-skill, /create-*, /run-*, /whats-next, /ask-me-questions. As-is, reshape deferred.",
       "category": "coding-discipline",
-      "source": {
-        "source": "directory",
-        "path": "./taches-toolkit"
-      }
+      "source": "./taches-toolkit"
     }
   ]
 }
