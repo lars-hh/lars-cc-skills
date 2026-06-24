@@ -64,48 +64,6 @@
       "source": "./skills/jq"
     },
     {
-      "name": "create-plans",
-      "description": "Hierarchical, Claude-executable project plans (briefs, roadmaps, phase plans, handoffs) for solo agentic development.",
-      "category": "coding-discipline",
-      "source": "./skills/create-plans"
-    },
-    {
-      "name": "create-meta-prompts",
-      "description": "Optimized prompts for Claude-to-Claude pipelines — multi-stage research → plan → execute workflows.",
-      "category": "productivity",
-      "source": "./skills/create-meta-prompts"
-    },
-    {
-      "name": "debug-like-expert",
-      "description": "Deep-analysis debugging mode for complex issues — systematic root-cause investigation.",
-      "category": "coding-discipline",
-      "source": "./skills/debug-like-expert"
-    },
-    {
-      "name": "create-agent-skills",
-      "description": "Expert guidance for authoring, building, and refining Claude Code Skills (SKILL.md structure + best practices).",
-      "category": "coding-discipline",
-      "source": "./skills/create-agent-skills"
-    },
-    {
-      "name": "create-slash-commands",
-      "description": "Expert guidance for creating Claude Code slash commands (YAML config, arguments, structure).",
-      "category": "coding-discipline",
-      "source": "./skills/create-slash-commands"
-    },
-    {
-      "name": "create-subagents",
-      "description": "Expert guidance for creating and using Claude Code subagents and the Task tool.",
-      "category": "coding-discipline",
-      "source": "./skills/create-subagents"
-    },
-    {
-      "name": "setup-ralph",
-      "description": "Set up Geoffrey Huntley's Ralph Wiggum autonomous coding loop (structure, prompts, backpressure).",
-      "category": "productivity",
-      "source": "./skills/setup-ralph"
-    },
-    {
       "name": "taches-toolkit",
       "description": "taches commands + agents: consider:* thinking models, /audit-* (+3 auditor agents), /heal-skill, /create-*, /run-*, /whats-next, /ask-me-questions. As-is, reshape deferred.",
       "category": "coding-discipline",
