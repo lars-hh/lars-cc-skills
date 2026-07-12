@@ -89,3 +89,7 @@ nur ergänzen. Pflege durch den Maintainer (Lars) — Consumer haben kein Write-
 ## setup-ralph
 
 *(Upstream: glittercowboy/taches-cc-resources — vanilla As-is-Import 2026-06-23, Reshape deferred.) Noch keine Learnings erfasst.*
+
+## spike
+
+- 2026-07-12 (Build): Erstes authored From-scratch-Skill des Marketplace. Design in 11-Fragen-Session fixiert (Triage-Router, 4-Fragen-Charter-Gate, P0–P5, Config-Ablage, 4-Token-Verdicts, Iterations-Budget). Prior-Art nur als Inspiration (dan-the-dev, kieranpotts, mattpocock, strelov1, gsd-spike). Erst-Test: get-brief-Retest geplant.

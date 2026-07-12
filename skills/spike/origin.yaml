@@ -1,0 +1,31 @@
+mode: authored
+source_url: null
+source_path: null
+last_upstream_check: null
+upstream_commit: null
+license: MIT
+version: 1.0.0
+original_author: "Lars Nowak (lars-hh) — https://github.com/lars-hh"
+divergence_notes: |
+  - From-scratch authored skill, no upstream. Design fixed in an 11-question
+    design session on 2026-07-12 (triage router, 4-question charter gate,
+    P0-P5 gated workflow, config-based filing, 4-token verdict canon,
+    iteration-budget timeboxing).
+known_deviations: |
+  - Markdown body structure (no XML tags) — consistent with the other skills
+    in this marketplace; intentional deviation from taches pure-XML doctrine.
+  - allowed-tools includes unrestricted Bash: P3 experiments inherently need
+    arbitrary commands (curl, python, node, ...). Compensated by the
+    Guardrails section (scratch-only code, no secrets in docs, AskUserQuestion
+    before external state changes).
+notes: |
+  - Prior art reviewed 2026-07-12 (inspiration only, no code or text taken):
+    dan-the-dev/xp-developer-skills (charter-before-code, timebox),
+    kieranpotts/skills (falsifiable-question doctrine),
+    mattpocock/skills prototype ("capture before delete"),
+    strelov1/spec-driven-tdd (one-page spike distillation),
+    gsd-build/get-shit-done gsd-spike (verdict vocabulary, series scope —
+    /spike deliberately routes series cases TO such frameworks rather than
+    replicating them).
+  - First authored (from-scratch) skill in this marketplace; also the pilot
+    for the v0.2 eval loop for authored skills.

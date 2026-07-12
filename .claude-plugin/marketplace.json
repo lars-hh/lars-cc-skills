@@ -64,6 +64,12 @@
       "source": "./skills/jq"
     },
     {
+      "name": "spike",
+      "description": "Run a time-boxed spike answering one falsifiable question: charter gate, prediction before evidence, iteration budget, counter-checked verdict, enforced capture into a spike index. Parks questions via --stub.",
+      "category": "engineering",
+      "source": "./skills/spike"
+    },
+    {
       "name": "taches-toolkit",
       "description": "taches commands + agents: consider:* thinking models, /audit-* (+3 auditor agents), /heal-skill, /create-*, /run-*, /whats-next, /ask-me-questions. As-is, reshape deferred.",
       "category": "coding-discipline",

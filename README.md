@@ -34,6 +34,7 @@ A small, opinionated marketplace of skills picked from across the Claude Code ec
 | humanizer | [blader/humanizer](https://github.com/blader/humanizer) | Refined (German variant) | MIT |
 | obsidian-markdown | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Refined (wikilink convention) | MIT |
 | jq | [majiayu000/claude-skill-registry](https://github.com/majiayu000/claude-skill-registry) | Vanilla | MIT |
+| spike | — (authored, from scratch) | Authored | MIT |
 
 See `THIRD_PARTY_LICENSES.md` for full attribution.
 
