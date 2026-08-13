@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-# verify-attribution.sh — Cross-check that each skill's origin.yaml
-# original_author matches what THIRD_PARTY_LICENSES.md claims, and that
-# SKILL.md has an author or attribution somewhere.
+# verify-attribution.sh — Cross-check attribution for the skills in skills/.
+#
+# Two kinds of skill are recognised via origin.yaml `mode:`:
+#   - third-party (default): must be listed in THIRD_PARTY_LICENSES.md and
+#     carry original_author + inspired_by in origin.yaml.
+#   - authored (mode: authored): a from-scratch skill by the repo owner. It
+#     needs an original_author, but NO third-party attribution (no upstream,
+#     not listed in THIRD_PARTY_LICENSES.md). This is a personal toolkit, so
+#     authored skills are first-class citizens, not an exception.
 #
 # Usage: ./scripts/verify-attribution.sh
 
@@ -30,26 +36,45 @@ for skill_dir in "$SKILLS_DIR"/*/; do
 
   problems=()
 
-  # Check skill is mentioned in THIRD_PARTY_LICENSES.md (case-insensitive header match)
-  if ! grep -iq "### $skill" "$LICENSES_DOC"; then
-    problems+=("not listed in THIRD_PARTY_LICENSES.md (expected header '### $skill')")
+  # Mode detection is yq-independent so the script still works without yq.
+  mode="third-party"
+  if grep -Eq '^[[:space:]]*mode:[[:space:]]*authored\b' "$origin"; then
+    mode="authored"
   fi
 
+  original_author="null"
+  inspired_by="null"
   if command -v yq >/dev/null 2>&1; then
     original_author=$(yq '.original_author' "$origin" 2>/dev/null || echo "null")
     inspired_by=$(yq '.inspired_by' "$origin" 2>/dev/null || echo "null")
+  fi
 
-    if [[ "$original_author" == "null" || -z "$original_author" ]]; then
-      problems+=("origin.yaml has no original_author")
+  if [[ "$mode" == "authored" ]]; then
+    # Owner-written skill: no upstream, no third-party listing required.
+    label="$skill (authored)"
+    if command -v yq >/dev/null 2>&1; then
+      if [[ "$original_author" == "null" || -z "$original_author" ]]; then
+        problems+=("authored skill has no original_author")
+      fi
     fi
-
-    if [[ "$inspired_by" == "null" || -z "$inspired_by" ]]; then
-      problems+=("origin.yaml has no inspired_by")
+  else
+    # Third-party skill: must be attributed.
+    label="$skill"
+    if ! grep -iq "### $skill" "$LICENSES_DOC"; then
+      problems+=("not listed in THIRD_PARTY_LICENSES.md (expected header '### $skill')")
+    fi
+    if command -v yq >/dev/null 2>&1; then
+      if [[ "$original_author" == "null" || -z "$original_author" ]]; then
+        problems+=("origin.yaml has no original_author")
+      fi
+      if [[ "$inspired_by" == "null" || -z "$inspired_by" ]]; then
+        problems+=("origin.yaml has no inspired_by")
+      fi
     fi
   fi
 
   if [[ ${#problems[@]} -eq 0 ]]; then
-    echo "PASS: $skill"
+    echo "PASS: $label"
     PASSED=$((PASSED + 1))
   else
     echo "FAIL: $skill"
