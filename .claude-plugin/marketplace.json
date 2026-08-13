@@ -10,12 +10,6 @@
   },
   "plugins": [
     {
-      "name": "caveman",
-      "description": "Output token reduction via caveman-speak modes (lite/full/ultra).",
-      "category": "productivity",
-      "source": "./skills/caveman"
-    },
-    {
       "name": "repomix",
       "description": "Pack a folder as single AI-readable file for cross-project context.",
       "category": "knowledge-management",
@@ -38,30 +32,6 @@
       "description": "Generate Keep-a-Changelog-conformant CHANGELOG.md from git log.",
       "category": "git",
       "source": "./skills/changelog-skill"
-    },
-    {
-      "name": "karpathy-skills",
-      "description": "Coding principles (Think Before, Simplicity First, Surgical Changes, Goal-Driven Execution). Karpathy-inspired, by forrestchang/multica-ai.",
-      "category": "coding-discipline",
-      "source": "./skills/karpathy-skills"
-    },
-    {
-      "name": "humanizer",
-      "description": "Remove AI-writing patterns (em-dash overuse, leverage, inflated symbolism). English + German variants.",
-      "category": "writing",
-      "source": "./skills/humanizer"
-    },
-    {
-      "name": "obsidian-markdown",
-      "description": "Generate valid Obsidian-flavored markdown (wikilinks, callouts, properties, embeds). Activate PARA-style path conventions with `wikilink_style: lars-para` or `--wikilink-style lars-para`.",
-      "category": "knowledge-management",
-      "source": "./skills/obsidian-markdown"
-    },
-    {
-      "name": "jq",
-      "description": "Translate natural-language JSON questions into jq expressions.",
-      "category": "data",
-      "source": "./skills/jq"
     },
     {
       "name": "spike",

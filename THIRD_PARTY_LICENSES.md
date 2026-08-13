@@ -1,18 +1,10 @@
 # Third-Party Licenses and Attribution
 
-This file lists the original sources, authors, and licenses of every skill in the `skills/` directory.
+This file lists the original sources, authors, and licenses of every third-party skill in the `skills/` directory. Skills authored from scratch by the repo owner (`mode: authored` in their `origin.yaml`, e.g. `spike`) are not third-party and are not listed here.
 
-For each skill, the upstream LICENSE file (where available) is preserved at `skills/<skill>/LICENSE`. Modifications made by this marketplace are recorded in `skills/<skill>/origin.yaml` under `divergence_notes:`.
+For each skill, the upstream LICENSE file (where available) is preserved at `skills/<skill>/LICENSE`. Modifications made here are recorded in `skills/<skill>/origin.yaml` under `divergence_notes:`.
 
 ## Skills
-
-### caveman
-
-- **Upstream:** [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman), path `plugins/caveman/skills/caveman/SKILL.md`
-- **License:** MIT (LICENSE copyright: JuliusBrussee)
-- **Author:** Julius Brussee ([@JuliusBrussee](https://github.com/JuliusBrussee))
-- **Upstream commit pinned:** `18e45320a0b1aecc959a807f8568ee44b3aaa055` (2026-05-19, 62,078 stars)
-- **This marketplace:** Vanilla (body and frontmatter verbatim from upstream; `name: caveman` already matches the plugin name in marketplace.json — no rename needed).
 
 ### repomix
 
@@ -46,49 +38,6 @@ For each skill, the upstream LICENSE file (where available) is preserved at `ski
 - **Upstream commit pinned:** `fb04aa89c0b771fece60d77f3703b9ef1885f26b` (last upstream activity 2026-04-14)
 - **This marketplace:** Minimal-vanilla — single allowed change is the frontmatter rename `name: changelog` → `name: changelog-skill` to match the plugin name in `marketplace.json`. Body is verbatim. Replaces the originally-considered `ComposioHQ/awesome-claude-skills/changelog-generator` (rejected 2026-05-19 because the upstream had `"license": null` at the repo level — see Lesson 7 in `marketplace-watchlist.md`).
 
-### karpathy-skills
-
-- **Upstream:** [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), path `skills/karpathy-guidelines/SKILL.md`
-- **License:** MIT — declared in `.claude-plugin/plugin.json` manifest. Upstream LICENSE file is missing; this marketplace ships a locally-reconstructed LICENSE in `skills/karpathy-skills/LICENSE` with a header comment naming the gap. A follow-up upstream PR to multica-ai is tracked as a Lars-action in `skills/karpathy-skills/origin.yaml notes`.
-- **Authors:** Jiayuan Zhang ([@forrestchang](https://github.com/forrestchang)) and contributors under the [multica-ai](https://github.com/multica-ai) org (co-commits from Shehab Tarek, Andriy Zakharko). Inspired by Andrej Karpathy's public X-post on LLM coding pitfalls ([X-post, 2026-01-26](https://x.com/karpathy/status/2015883857489522876)). **Not authored by Karpathy himself.**
-- **Upstream commit pinned:** `2c606141936f1eeef17fa3043a72095b4765b9c2` (2026-05-19)
-- **This marketplace:** Refined — frontmatter `name` corrected from `karpathy-guidelines` to `karpathy-skills` (removes the "official Karpathy guidelines" ambiguity), added version/license/allowed-tools/refined description, new "Source & attribution" section explicitly correcting the community mis-attribution, new "When to use this skill" framing, new "Relation to other goal-driven frameworks" section bounding Principle 4 against GSD and Superpowers. All four principles preserved verbatim.
-
-### humanizer
-
-- **Upstream:** [blader/humanizer](https://github.com/blader/humanizer), path `SKILL.md` (v2.5.1)
-- **License:** MIT (LICENSE copyright: Siqi Chen)
-- **Author:** Siqi Chen ([@blader](https://github.com/blader)) — original author of the humanizer skill. Confirmed via LICENSE copyright line.
-- **Upstream commit pinned:** `8b3a17889fbf12bedae20974a3c9f9de746ed754` (2026-05-19, 19,587 stars, last push 2026-04-01)
-- **Source-switch note:** Initially fetched from `davila7/claude-code-templates` (v2.1.1, a redistribution layer over blader's work). Switched to direct upstream `blader/humanizer` (v2.5.1) for cleaner attribution and 4 additional patterns — davila7 was behind on upstream. The davila7-redistribution is documented in the watchlist as Lesson 1 (aggregator-direct-upstream preference).
-- **This marketplace:** Refined — added a German Variant section with 12 patterns (G1-G12: Nominalstil-Inflation, Floskeln, Übertriebene Gewissheit, Verstärker-Inflation, Meta-Ankündigungen, Höflichkeits-Boilerplate, Anglizismen-Schmatz, falsche Plurale, Konjunktiv-II-Höflichkeit, tautologische Aufzählungen, "Wichtig zu beachten"-Hedge, Übersetzungs-Fossile), a Lars-specific whitelist preserving fragments / direct address / conscious Anglicisms when `--profile lars` is set, a Modes table at the top of the body, empty-input + clean-input handling on Process step 1, and a refined frontmatter description per audit Quick Fix. English patterns 1-29 preserved verbatim from upstream.
-
-### obsidian-markdown
-
-- **Upstream:** [SpreMars/obsidian-markdown-skill](https://github.com/SpreMars/obsidian-markdown-skill), path `SKILL.md` + 3 reference files (`CALLOUTS.md`, `EMBEDS.md`, `PROPERTIES.md`)
-- **License:** MIT (LICENSE-File copyright: "2026 Trae Skills Community" — Trae IDE community attribution; repo owner: SpreMars)
-- **Author:** SpreMars (repo owner), Trae Skills Community (LICENSE-named)
-- **Upstream commit pinned:** `bf17720d424917ce0753461694e3a6158cec3ebc` (2026-03-31)
-- **Bus-Factor risk:** 0 stars at time of import; documented `fallback_source: davila7/claude-code-templates` redistribution as fallback if SpreMars goes stale.
-- **This marketplace:** Refined — added Modes table (generic | lars-para | custom), frontmatter `wikilink_style` variable, `allowed-tools` declaration, new reference `WIKILINKS-LARS-PARA.md` documenting 10 PARA path patterns with slug rules. Upstream `SKILL.md` body and references (CALLOUTS, EMBEDS, PROPERTIES) preserved verbatim.
-
-### jq
-
-- **Upstream:** [majiayu000/claude-skill-registry](https://github.com/majiayu000/claude-skill-registry), path `skills/data/jq/SKILL.md`
-- **License:** MIT (LICENSE copyright per majiayu000's repo-level LICENSE)
-- **Author:** Jiayu Ma ([@majiayu000](https://github.com/majiayu000)) — original author, the repo is a `claude-skill-registry` collection (registry-style, not aggregator-style).
-- **Upstream commit pinned:** `fa3abd30d36ee95c5b42d257edb9e814847ccd4b` (2026-05-19, 310 stars)
-- **Bus-Factor risk:** Medium — 310 stars. `fallback_source: lanej/dotfiles` documented in origin.yaml as an ideas source, but its own LICENSE has not been verified — would need a separate check before adoption.
-- **This marketplace:** Vanilla (body and frontmatter verbatim from upstream; `name: jq` already matches the plugin name in marketplace.json — no rename needed).
-
-## How to verify attribution
-
-Run `./scripts/verify-attribution.sh` to check that every skill's `origin.yaml` matches the upstream SKILL.md header and that this file is consistent.
-
-## How to report issues
-
-If you find an attribution error, missing license file, or upstream source that has since gained a license (e.g., ComposioHQ may add one later), open an issue at https://github.com/lars-hh/lars-cc-skills/issues.
-
 ### taches-toolkit (commands + agents bundle)
 
 - **Upstream:** [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources), paths `commands/*` + `agents/*`
@@ -96,3 +45,11 @@ If you find an attribution error, missing license file, or upstream source that 
 - **Author:** Lex Christopherson ([@glittercowboy](https://github.com/glittercowboy))
 - **Upstream commit pinned:** `0d915b80b95f9889673e1dc6a9059ed239764cde` (2026-06-23)
 - **This marketplace:** Selective 1:1 as-is import of KEEP commands (16 top-level + consider/ 12) + 3 auditor agents. DROP: add-to-todos, check-todos, create-hook, research/* (8). Reshape deferred.
+
+## How to verify attribution
+
+Run `./scripts/verify-attribution.sh` to check that every third-party skill's `origin.yaml` matches the upstream SKILL.md header and that this file is consistent. Authored skills (`mode: authored`) are checked for an `original_author` only.
+
+## How to report issues
+
+If you find an attribution error, missing license file, or upstream source that has since gained a license, open an issue at https://github.com/lars-hh/lars-cc-skills/issues.
