@@ -1,0 +1,36 @@
+mode: authored
+source_url: null
+source_path: null
+last_upstream_check: null
+upstream_commit: null
+license: MIT
+version: 1.0.0
+original_author: "Lars Nowak (lars-hh) — https://github.com/lars-hh"
+divergence_notes: |
+  - From-scratch authored skill, no upstream. Design fixed on 2026-08-13 in a
+    design grill plus three research runs (own ecosystem / Claude Code platform /
+    external state of the art), decided in PROPOSAL.md.
+  - Stage 1 only: four roles, four modes, explicitly invoked, no hooks. The
+    staged build order (2: recurrence state + governor, 3: SessionStart recall,
+    4: Stop safety net) is deliberate — the weight arrives in stages, never as
+    an apparatus on day one.
+known_deviations: |
+  - Markdown body structure (no XML tags) — consistent with the other skills in
+    this marketplace; intentional deviation from taches pure-XML doctrine.
+  - Fully scoped per-command Bash allowlist instead of bare `Bash` (which spike
+    carries). compass has a genuinely closed command set: four git reads plus
+    three gh calls. The scoping is also the enforcement point for "compass never
+    commits" — `git commit` is simply not reachable.
+  - BACKLOG.md structural tokens are English while item prose follows whatever
+    language the user was speaking. PROPOSAL.md sketched German headings; they
+    are machine-read from Stage 2 on, so they follow the same rule as spike's
+    English-only verdict tokens.
+notes: |
+  - Deliberately NOT used, each for a recorded reason: claude-mem (Bun daemon +
+    Chroma, duplicates a native feature), mem0/Zep/Letta (user personalisation,
+    wrong category), BMAD/spec-kit (ceremony a one-line idea never survives),
+    Beads (storage backend swapped mid-life), manually triggered handoff skills
+    (they reproduce the forgetting they are meant to cure).
+  - Coexistence is resolution, not exclusion: compass adopts an existing roadmap
+    (GSD's `.planning/ROADMAP.md`, a root ROADMAP.md) and contributes the half
+    those do not have — catching ideas and reporting drift.

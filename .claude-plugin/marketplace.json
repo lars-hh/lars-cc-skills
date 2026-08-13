@@ -40,6 +40,12 @@
       "source": "./skills/spike"
     },
     {
+      "name": "compass",
+      "description": "Keep a coding project pointed at its goal: records direction in .compass/, captures ideas the moment they surface, reports drift. Modes start/check/capture/wrap. Adopts an existing roadmap instead of duplicating it.",
+      "category": "coding-discipline",
+      "source": "./skills/compass"
+    },
+    {
       "name": "taches-toolkit",
       "description": "taches commands + agents: consider:* thinking models, /audit-* (+3 auditor agents), /heal-skill, /create-*, /run-*, /whats-next, /ask-me-questions. As-is, reshape deferred.",
       "category": "coding-discipline",

@@ -18,6 +18,7 @@ It ships two ways at once (full picture in [`docs/deployment.md`](docs/deploymen
 | Skill | Source | Mode | License |
 |---|---|---|---|
 | spike | — (authored) | Authored | MIT |
+| compass | — (authored) | Authored | MIT |
 | repomix | [yamadashy/repomix](https://github.com/yamadashy/repomix) | Vanilla (CLI wrapper) | MIT |
 | security-auditor | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | Refined | MIT |
 | mermaid-diagram-specialist | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Vanilla | MIT |
