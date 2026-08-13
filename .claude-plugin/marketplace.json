@@ -5,7 +5,7 @@
     "email": "lars.nowak@baqend.com"
   },
   "metadata": {
-    "description": "Curated Claude Code skills, refined for knowledge workers.",
+    "description": "Lars' personal Claude Code skill toolkit (Werkzeugkasten).",
     "version": "0.1.0"
   },
   "plugins": [

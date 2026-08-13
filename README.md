@@ -1,55 +1,60 @@
 # lars-cc-skills
 
-Curated Claude Code skills, refined for knowledge workers.
+Lars' personal Claude Code skill toolkit — a small, curated set of skills used across my machines, my repos, and cloud sessions.
 
-**Status:** v0.1.0 — experimental, in active development.
+**Status:** personal toolkit (Werkzeugkasten), actively used and pruned.
 
 ## What this is
 
-A small, opinionated marketplace of skills picked from across the Claude Code ecosystem, refined where useful, and attributed cleanly. Focused on knowledge-worker workflows — vault tooling, research, writing, light coding — not sales or homelab automation.
+A **toolbox**, not a public marketplace. Every skill here earns its place by one filter: *do I actually use it?* Some are authored from scratch (`spike`), some are vendored from the Claude Code ecosystem with clean attribution and a permissive license. The distinction that matters is not "mine vs. borrowed" — it's "used vs. dead weight."
 
-## Philosophy
+It ships two ways at once (full picture in [`docs/deployment.md`](docs/deployment.md)):
 
-- **Cherry-pick as starting point, not endgame.** Skills get refined via the 10-step workflow in [`docs/veredelung-workflow.md`](docs/veredelung-workflow.md) — sub-plan via `/taches-cc-resources:create-plan`, baseline + re-audit via `Agent(taches-cc-resources:skill-auditor)`, writing-patterns checklist from the official `skill-creator` skill.
-- **Origin-tracking, not live-sync.** Each skill carries an `origin.yaml` recording the upstream source, the divergence notes, and the last upstream check. We track for updates, not for identity.
-- **License hygiene first.** No skill enters the marketplace without a verified LICENSE file at the source repo. See `docs/license-audit.md`.
+- as a **plugin marketplace** for my own machines and one collaborator, and
+- as skills you **copy into a repo's `.claude/skills/`** (via `scripts/sync-skills.sh`) so they work in cloud/web sessions with no install and no network.
 
-## Installation
+## Skills
+
+| Skill | Source | Mode | License |
+|---|---|---|---|
+| spike | — (authored) | Authored | MIT |
+| repomix | [yamadashy/repomix](https://github.com/yamadashy/repomix) | Vanilla (CLI wrapper) | MIT |
+| security-auditor | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | Refined | MIT |
+| mermaid-diagram-specialist | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Vanilla | MIT |
+| changelog-skill | [myl7/changelog-skill](https://github.com/myl7/changelog-skill) | Vanilla | Apache-2.0 |
+| taches-toolkit | [glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources) | As-is bundle | MIT |
+
+Skills that were removed, and why: [`docs/removed-skills.md`](docs/removed-skills.md). Full attribution: [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md).
+
+## Install
+
+**On my machines / for a collaborator** (marketplace — once per machine):
 
 ```bash
 /plugin marketplace add lars-hh/lars-cc-skills
 /plugin install <skill-name>@lars-cc-skills
 ```
 
-## Skills (v0.1.0)
+**Into a specific repo** (so cloud/web sessions have the skills — no install, no network):
 
-| Skill | Source | Mode | License |
-|---|---|---|---|
-| caveman | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | Vanilla | MIT |
-| repomix | [yamadashy/repomix](https://github.com/yamadashy/repomix) | Vanilla (CLI wrapper) | MIT |
-| security-auditor | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | Refined | MIT |
-| mermaid-diagram-specialist | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Vanilla | MIT |
-| changelog-skill | [myl7/changelog-skill](https://github.com/myl7/changelog-skill) | Vanilla | Apache-2.0 |
-| karpathy-skills | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | Refined (owner attribution) | MIT |
-| humanizer | [blader/humanizer](https://github.com/blader/humanizer) | Refined (German variant) | MIT |
-| obsidian-markdown | [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) | Refined (wikilink convention) | MIT |
-| jq | [majiayu000/claude-skill-registry](https://github.com/majiayu000/claude-skill-registry) | Vanilla | MIT |
-| spike | — (authored, from scratch) | Authored | MIT |
+```bash
+scripts/sync-skills.sh /path/to/target-repo         # all skills
+scripts/sync-skills.sh /path/to/target-repo spike   # a subset
+```
 
-See `THIRD_PARTY_LICENSES.md` for full attribution.
+Then commit `.claude/skills/` in that repo. See [`docs/deployment.md`](docs/deployment.md) for cross-device, cloud sessions, and sharing.
 
-## Recommended Companions
+## Companions (installed separately)
 
-These are NOT in this marketplace — install them separately. They pair well with what's here.
+- **[obra/superpowers](https://github.com/obra/superpowers)** — brainstorming, planning, debugging meta-skills.
+- **[glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources)** — skill-authoring toolkit (also bundled here as `taches-toolkit`).
 
-- **[glittercowboy/taches-cc-resources](https://github.com/glittercowboy/taches-cc-resources)** — Skill-authoring toolkit (audit, heal, create)
-- **[obra/superpowers](https://github.com/obra/superpowers)** — Brainstorming, planning, debugging meta-skills
-- **[anthropics/claude-md-management](https://github.com/anthropics/claude-plugins-official)** — CLAUDE.md auditing and improvement
+## Maintaining
 
-## Contributing
-
-See `CONTRIBUTING.md` and `docs/adding-a-skill.md`.
+- Add or refine a skill: [`docs/adding-a-skill.md`](docs/adding-a-skill.md) + [`docs/veredelung-workflow.md`](docs/veredelung-workflow.md).
+- Running findings from real use: [`docs/skill-learnings.md`](docs/skill-learnings.md).
+- Verify: `scripts/audit-license.sh` + `scripts/verify-attribution.sh` (authored skills carry `mode: authored` in `origin.yaml`).
 
 ## License
 
-MIT for the marketplace structure, scripts, and refinements. Individual skills under `skills/` may carry their own compatible licenses — see `THIRD_PARTY_LICENSES.md`.
+MIT for the toolkit structure, scripts, and refinements. Individual vendored skills under `skills/` carry their own compatible licenses — see `THIRD_PARTY_LICENSES.md`.
