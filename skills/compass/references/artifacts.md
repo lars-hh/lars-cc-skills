@@ -60,6 +60,12 @@ resolved: 2026-08-13
 `background:` lists files worth reading for context that fill no role. Anything
 listed anywhere here is read; only files marked *ours* are ever written.
 
+`CLAUDE.md` / `AGENTS.md` are the one asymmetric entry: they are read whether
+listed or not, so their line is documentation rather than configuration — it
+exists so a reader of this file sees everything compass consults without having
+to know what the platform loads by itself. Removing the line does not stop them
+being read. See `references/bootstrap.md` Step 4.
+
 ## Skeletons compass writes when it owns a role
 
 ### ROADMAP.md
