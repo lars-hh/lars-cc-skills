@@ -52,7 +52,7 @@ touching the skill.
 - decisions: .compass/DECISIONS.md     # ours (root DECISIONS.md is an architecture write-up, background only)
 - backlog: .compass/BACKLOG.md         # ours
 - handoff: .compass/HANDOFF.md         # ours
-- background: DECISIONS.md, .planning/.continue-here.md
+- background: CLAUDE.md, DECISIONS.md, .planning/.continue-here.md
 
 resolved: 2026-08-13
 ```

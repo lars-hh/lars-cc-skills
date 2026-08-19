@@ -32,7 +32,15 @@ how the direction reaches other machines and cloud sessions.
 
 Free inputs, no questions spent: the README's first heading and first paragraph ·
 `package.json` / `pyproject.toml` / `Package.swift` name and description ·
-the last twenty commit subjects · an existing roadmap or TODO if one exists.
+the last twenty commit subjects · an existing roadmap or TODO if one exists ·
+a root `CLAUDE.md` or `AGENTS.md`.
+
+The last one is cheap to consult — `CLAUDE.md` is already in context on this
+platform, `AGENTS.md` is one read — but content decides, as everywhere else:
+many of these files are pure convention ("run the
+tests before committing", "no new frameworks") and say nothing about what the
+project is *for*. Then it contributes nothing, and that is fine. It never
+outranks the README; it is one candidate among five.
 
 From those, draft a one-sentence goal and, where the material supports it, up to
 four milestones. Commit subjects are usually enough to see the shape of the work
@@ -63,6 +71,11 @@ markdown. Skeletons are in `references/artifacts.md`.
 
 Where a role was adopted, no file is created for it — the adoption goes into
 `.compass/config.md` instead.
+
+If a root `CLAUDE.md` or `AGENTS.md` exists, list it under `background:` there.
+It fills no role and is read whether it is listed or not, so the line is
+documentation rather than configuration — but a reader of `config.md` should be
+able to see every file compass consults without inferring one from the platform.
 
 ## Step 5 — report, do not commit
 

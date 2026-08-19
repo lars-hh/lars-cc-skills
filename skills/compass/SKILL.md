@@ -222,6 +222,13 @@ A steering skill that nags gets tuned out, and then it is worse than nothing.
 
 - **Write only inside `.compass/`.** Adopted files are read. `HANDOVER.md`,
   `ROADMAP.md` at root and anything under `.planning/` belong to other skills.
+- **`CLAUDE.md` and `AGENTS.md` are permanently adopted.** Read them, name them
+  in a report, hand over a finished paragraph — never write them. They fill no
+  role, so they belong under `background:` in `config.md`, not in the role
+  table. They already have owners, and compass stops at `status: proposed`:
+  editing them would be applying a decision rather than recording one. They also
+  outrank this skill, which is the deeper reason — a skill that edits its own
+  instructions changes every later session, including other skills' sessions.
 - **Never commit.** Not after `wrap`, not after `capture`. The git allowlist is
   reads only, so this is enforced and not merely promised. Committing is the
   user's move.

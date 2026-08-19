@@ -19,7 +19,9 @@ conversation, and — only where `git remote` returned something and `gh` is
 authenticated — `gh issue list --state open`.
 
 `--deep` adds `git diff --stat`, `git log --format='%h %cI %s'` bounded by the
-handoff date, and `git show --stat` on the specific commits it intends to name.
+handoff date, `git show --stat` on the specific commits it intends to name, and
+a root `CLAUDE.md` / `AGENTS.md` if one exists — the former is already in
+context on this platform, the latter is one read.
 
 ## Execution drift — evidence lives in git
 
@@ -40,6 +42,38 @@ handoff date, and `git show --stat` on the specific commits it intends to name.
    `wrap`. The handoff carries a date, not a timestamp, so only a **strictly
    earlier day** counts. Commits made after a wrap on the same day are the
    normal case and are not evidence of anything.
+
+## Instruction drift — evidence lives in two files that disagree · `--deep` only
+
+`CLAUDE.md` / `AGENTS.md` is permanently adopted: read, never written. One
+signal, and deliberately only one:
+
+1. A DECISIONS entry or a roadmap milestone contradicts a line in that file.
+
+**Both sides must be quotable.** `DECISIONS.md:41` says X, `CLAUDE.md:31`
+requires Y. One pointer is not enough here — with only one side quoted the claim
+is an impression about a file, and it gets dropped like any other unevidenced
+observation.
+
+**The bar is a contradiction, not a shared keyword.** A real pair that must
+*not* fire: the decisions file says *"SQLite only as local iOS storage, never as
+the server DB"*, and the instructions file names another project's *"SQLite
+schema as the template for our rules table"*. Same word, opposite-looking
+polarity, no conflict — one is about deployment, the other about a schema shape.
+Test it by restating both sides in one sentence; if that sentence is not
+self-contradictory, there is nothing to report.
+
+**Never judge the file itself.** "CLAUDE.md looks outdated", "these conventions
+seem stale", "this should probably be rewritten" are not observations. They are
+noise aimed at the one document that outranks everything else in the session,
+and a skill that erodes trust in it has done more damage than the contradiction
+would have. Report the contradiction and stop; which side is wrong is the user's
+call, and it is a next step, never a fix compass performs.
+
+Shallow `check` does not run this pass at all. That is not a budget decision: the
+quiet path is the reason the skill still gets read after a month, and a
+cross-file comparison is exactly the kind of signal that produces confident
+nonsense when run on every invocation.
 
 ## Evidence or silence
 
@@ -66,8 +100,10 @@ inferred. Nothing follows it — no observations that are not drift, no
 encouragement.
 
 Drift path: the same header, then at most **three** observations, each labelled
-`Drift (execution):` or `Drift (capture):` and each carrying its evidence, then
-at most **three** next steps. Overflow becomes a single line offering `--deep`.
+`Drift (execution):`, `Drift (capture):` or — under `--deep` only —
+`Drift (instruction):`, each carrying its evidence, then at most **three** next
+steps. The cap of three is counted across all labels together, not per label.
+Overflow becomes a single line offering `--deep`.
 
 A next step is a decision the user can make, not a task compass intends to
 perform.
@@ -89,8 +125,8 @@ is a one-file edit.
 conversation · execution signals 1–4 · capture signals 1–3 · caps of three and
 three.
 
-**`--deep` adds:** per-commit inspection, diff stats, and time-bounded history
-since the handoff.
+**`--deep` adds:** per-commit inspection, diff stats, time-bounded history since
+the handoff, and the instruction signal against `CLAUDE.md` / `AGENTS.md`.
 
 **To turn it down:** delete signals from the default lists above.
 **To turn it up:** add a signal here, and only here. If a new signal needs a new
