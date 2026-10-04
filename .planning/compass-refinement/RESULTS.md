@@ -1,7 +1,7 @@
 # Compass: Umsetzung und Abnahme
 
-Stand: 2026-09-13. Lokal umgesetzt und geprüft. Noch nicht veröffentlicht oder in
-bestehende produktive Installationen verteilt.
+Stand der Abnahme: 2026-09-13. Rollout am 2026-10-04 abgeschlossen für die
+gefundenen aktiven Installationen auf diesem Mac; Details unter ROLLOUT.md.
 
 ## Geändert
 
@@ -92,8 +92,6 @@ Workspace: `/Users/lars/Desktop/claude/compass/refinement-workspace/`.
 - `install-smoke.json`: Installationsprüfung.
 - `review.html`: Skill-Creator-Viewer mit 18 Alt-/Neu-Ausgaben und Grading.
 
-Die bestehenden globalen Installationen bleiben auf dem veröffentlichten Stand
-c5d8cb062093. Für einen Rollout die kanonischen Änderungen committen/veröffentlichen,
-Marketplace und Compass über die reguläre CLI aktualisieren; danach in einer neuen
-Session laden und Dateien erneut vergleichen. Keine Cache-Dateien direkt ändern.
-Gezielte Projektkopien nur an nachgewiesene Installationsziele synchronisieren.
+Der Quellstand 9c37e9c75c5b ist inzwischen veröffentlicht und auf diesem Mac
+installiert. ROLLOUT.md dokumentiert Ziele, Dateivergleich und verbleibende
+Reichweitengrenzen. Historische Testdaten oben bleiben unverändert.
