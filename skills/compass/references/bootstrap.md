@@ -1,106 +1,75 @@
-# Bootstrap — the first run in a repository
+# Bootstrap and partial setup
 
-Read once per repository, ever. The governing constraint: **at most two
-questions.** A third question is a planning apparatus arriving through the back
-door, and avoiding that apparatus is the reason this skill exists.
+Used by `start` when any configuration/role is missing. `check` never bootstraps;
+`capture` and `wrap` create only the records needed for their requested action.
+An existing `.compass/` directory is not proof that setup is complete.
 
-## Step 0 — look around before deciding anything
+## Inspect first
 
-```
-git rev-parse --abbrev-ref HEAD
-git log --oneline -20
-```
+Read existing config, relevant project instructions, README, existing steering
+sources, and dated recent git history where available. Use the candidate table
+in SKILL.md; do not maintain a second resolution order here. A planning framework
+is a reason to adopt its roadmap, not refuse Compass or create a rival plan.
 
-and check what steering material already exists: `.planning/`, `ROADMAP.md`,
-`DECISIONS.md`, `HANDOVER.md`, `docs/`. Three shapes come up:
+Preserve all existing Compass items and config exceptions. If a configured source
+has disappeared, flag the missing source rather than silently adopt another one.
+Resolve only the ambiguity necessary to complete setup. Existing valid decisions
+about ownership are not a recurring interview.
 
-| What you find | What compass does |
-|---|---|
-| Nothing | Creates all four. compass is the direction here. |
-| A handoff file from another skill (`HANDOVER.md`) | Creates all four, reads that file as background, never writes it. |
-| A planning framework (`.planning/ROADMAP.md`, phase folders) | **Adopts** the roadmap, creates BACKLOG and HANDOFF, treats decisions per the doubt rule. |
+A decisions source may be a consolidated architecture document with binding choices.
+Do not reject it just because it is not a dated log. A file that merely describes
+components without choices remains background. Existing handoffs from other tools
+remain owned by those tools; our handoff may be a compact reference to them.
 
-**A planning framework is not a reason to refuse.** It owns the plan; compass
-contributes what it does not have — catching ideas the moment they surface, and
-reporting drift against that framework's own roadmap. Two roadmaps would be the
-duplication compass exists to avoid; adopting one is the point.
+## Infer, then ask only what is missing
 
-Never add `.compass/` to `.gitignore`. Committed is the whole mechanism — it is
-how the direction reaches other machines and cloud sessions.
+For missing direction, infer a draft goal from the project material. Do not treat
+commit subjects as future commitments. Propose milestones only if supported by
+an existing agreement. Higher-priority project instructions remain authoritative;
+a README is evidence, not a way to override them.
 
-## Step 1 — infer before asking
+Ask at most two necessary questions, grouping unresolved role choices and goal
+confirmation where useful. If the user already stated the goal, do not ask again.
+If no goal can be inferred, ask directly for it instead of offering an empty draft
+and asking the same thing a second time. No stakeholder/success-criteria interview.
+A substantive unresolved ownership ambiguity remains pending if the question
+budget is exhausted; never guess a write target just to finish setup.
 
-Free inputs, no questions spent: the README's first heading and first paragraph ·
-`package.json` / `pyproject.toml` / `Package.swift` name and description ·
-the last twenty commit subjects · an existing roadmap or TODO if one exists ·
-a root `CLAUDE.md` or `AGENTS.md`.
+## Complete missing files only
 
-The last one is cheap to consult — `CLAUDE.md` is already in context on this
-platform, `AGENTS.md` is one read — but content decides, as everywhere else:
-many of these files are pure convention ("run the
-tests before committing", "no new frameworks") and say nothing about what the
-project is *for*. Then it contributes nothing, and that is fine. It never
-outranks the README; it is one candidate among five.
+Use skeletons from `references/artifacts.md`. Adopted roles get config references,
+not duplicates. Preserve existing backlog, decisions, handoff and their IDs. Create
+an empty backlog with headings only when none exists. Persist only resolved roles;
+mark unresolved ones explicitly as unresolved, with the reason, rather than a
+made-up path. A future start can resolve them; check reports the coverage gap.
 
-From those, draft a one-sentence goal and, where the material supports it, up to
-four milestones. Commit subjects are usually enough to see the shape of the work
-even when no document describes it.
+List applicable CLAUDE.md/AGENTS.md as background. Their authority/read-only status
+does not depend on that list. Existing local/private location and symlink decisions
+are valid exceptions to the default `.compass/` location. Do not change ignore rules.
 
-## Step 2 — one question
-
-AskUserQuestion, with the drafted goal sentence as the recommended answer:
-
-- accept it as drafted
-- correct it (the user supplies the sentence)
-- fresh start, the goal is this instead
-
-## Step 3 — a second question only if nothing could be inferred
-
-Only this one, only if step 1 came up empty: *"One sentence: what is this
-project for?"*
-
-Never ask for milestones, scope, success criteria, stakeholders or a name for
-the first phase. Milestones arrive later through `capture --hard`, one at a time,
-when they are actually known.
-
-## Step 4 — write all four at once
-
-Including the near-empty ones. `capture` and `check` both assume the files
-exist; creating them lazily buys a branch in every mode to save three lines of
-markdown. Skeletons are in `references/artifacts.md`.
-
-Where a role was adopted, no file is created for it — the adoption goes into
-`.compass/config.md` instead.
-
-If a root `CLAUDE.md` or `AGENTS.md` exists, list it under `background:` there.
-It fills no role and is read whether it is listed or not, so the line is
-documentation rather than configuration — but a reader of `config.md` should be
-able to see every file compass consults without inferring one from the platform.
-
-## Step 5 — report, do not commit
-
-Name what was created, what was adopted, and what is being read as background.
-Then one line: `.compass/` is meant to be committed, and compass does not commit
-— that stays the user's move.
-
-## What a fresh roadmap looks like from one sentence
+For a new own roadmap:
 
 ```markdown
 # Roadmap
 
-**Goal:** Turn the raw ESPN fantasy export into a weekly matchup report I
-actually read.
+**Goal:** <the established goal>
 
 ## Milestones
 
-- (none recorded yet — add one with `/compass capture --hard <milestone>`)
+<!-- No agreed milestones yet. capture --hard records a backlog proposal;
+     an explicit request to adopt it into this roadmap creates the milestone. -->
 
 ## Not doing
 
-- (nothing recorded yet)
+<!-- Add only established exclusions. -->
 ```
 
-An empty milestone list is honest and has a defined consequence: `check` reports
-that execution drift is not judgeable yet, rather than inventing an anchor and
-accusing commits against it. That is better than a fabricated plan, and it makes
-the first `capture --hard` obviously worth doing.
+Do not fill placeholders with invented scope. Without anchors, execution checking
+is limited; say so. A blank milestone list is not a successful planning outcome.
+
+## Report
+
+At most 12 lines, including orientation: what was created/adopted, goal/position,
+accepted pending work, relevant gaps. Recommend tracking `.compass/` for cross-device
+availability on a new default setup; respect an established private-storage choice
+and mention its sync limitation only when relevant. Never commit or edit excludes.

@@ -10,6 +10,9 @@ divergence_notes: |
   - From-scratch authored skill, no upstream. Design fixed on 2026-08-13 in a
     design grill plus three research runs (own ecosystem / Claude Code platform /
     external state of the art), decided in PROPOSAL.md.
+  - 2026-09-13 refinement: explicit local captures need no repeated approval;
+    ownership-aware maintenance, candidate matching in Closed, compatible HEAD
+    anchors and honest drift coverage. Documented private storage is preserved.
   - Stage 1 only: four roles, four modes, explicitly invoked, no hooks. The
     staged build order (2: recurrence state + governor, 3: SessionStart recall,
     4: Stop safety net) is deliberate — the weight arrives in stages, never as
@@ -17,10 +20,9 @@ divergence_notes: |
 known_deviations: |
   - Markdown body structure (no XML tags) — consistent with the other skills in
     this marketplace; intentional deviation from taches pure-XML doctrine.
-  - Fully scoped per-command Bash allowlist instead of bare `Bash` (which spike
-    carries). compass has a genuinely closed command set: four git reads plus
-    three gh calls. The scoping is also the enforcement point for "compass never
-    commits" — `git commit` is simply not reachable.
+  - Scoped read commands plus authorized GitHub issue projection. The tool
+    metadata is host-specific and is not a portable enforcement boundary.
+    Compass itself never commits or implements code.
   - BACKLOG.md structural tokens are English while item prose follows whatever
     language the user was speaking. PROPOSAL.md sketched German headings; they
     are machine-read from Stage 2 on, so they follow the same rule as spike's

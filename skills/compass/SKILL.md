@@ -1,261 +1,213 @@
 ---
 name: compass
-description: "Keeps a coding project pointed at its goal: records direction in `.compass/`, reports when work drifts. Modes `start` (orientation briefing), `check` (read-only drift report), `capture` (record an idea, gap, bug or open question the moment it surfaces), `wrap` (rewrite the handoff). Reach for `capture` MID-TASK and unasked the moment something surfaces that is not yet recorded — that is the point of this skill, not an interruption. Use when the user says 'halt das fest', 'merk dir das', 'schreib das auf', 'das dürfen wir nicht vergessen', 'capture this', 'note that down', 'wo stehen wir', 'where are we', 'verzetteln wir uns', 'are we drifting', 'was war nochmal das Ziel', or when opening or closing work on a repository. NOT an executor — it records and waits at `status: proposed`, never implements, plans or researches. NOT a spike runner. NOT a repair tool for another skill's ledger: session-handoff owns root HANDOVER.md and ROADMAP.md, compass writes only inside `.compass/`."
+description: "Keep a coding project pointed at its goal. Use for 'halt das fest', 'merk dir das', 'capture this', 'wo stehen wir', 'are we drifting', and repository orientation or handoff. Modes: start, check, capture, wrap. Offer capture when an unrecorded insight surfaces mid-task; a clear user request authorizes local recording without another confirmation. Adopts existing roadmaps, reports evidenced drift and coverage gaps. Records direction and status; never implements code or edits another framework's files. No automatic recall across sessions."
 argument-hint: "start | check [--deep] | capture [<text>] [--hard|--soft] | wrap"
-allowed-tools: Read, Write, Edit, Glob, Grep, AskUserQuestion, Bash(git log:*), Bash(git status:*), Bash(git diff:*), Bash(git show:*), Bash(git remote:*), Bash(git rev-parse:*), Bash(gh issue list:*), Bash(gh issue create:*)
+allowed-tools: Read, Write, Edit, Glob, Grep, AskUserQuestion, Bash(date:*), Bash(git log:*), Bash(git status:*), Bash(git diff:*), Bash(git show:*), Bash(git remote:*), Bash(git rev-parse:*), Bash(git merge-base --is-ancestor:*), Bash(gh issue list:*), Bash(gh issue create:*)
 ---
 
 # Compass
 
-Holds where a project is meant to go, and says so when the work drifts away
-from it. It exists because execution frameworks are good at building and bad at
-remembering: each session starts clean, the goal does not survive the context
-window, and good ideas surface mid-task and evaporate.
+Record direction when it becomes clear; compare actual work with that direction.
+Execution frameworks build. Compass captures, reports and maintains its own
+steering records, without starting implementation because an item exists.
 
-**compass steers, the execution framework builds.** It never implements
-anything itself — it records, reports, and waits.
-
-## Learnings
-
-> Before starting: read the "compass" section of this marketplace's
-> `docs/skill-learnings.md` if present (known pitfalls from real runs).
+Read this marketplace's `docs/skill-learnings.md`, compass section, if available.
+Historical learnings explain prior choices; the current contract below governs.
 
 ## Dispatch
 
 | Invocation | Behavior |
 |---|---|
-| `/compass start` | Resolve the four roles, then give an orientation briefing. First run in a repo bootstraps what is missing (`references/bootstrap.md`) |
-| `/compass check [--deep]` | Read-only drift report (`references/drift.md`). Writes nothing, ever — not even when asked |
-| `/compass capture <text> [--hard\|--soft]` | Dup-check, then record one item. Confirm the one-line wording before writing |
-| `/compass capture` (no text) | Capture what was just discussed: restate it in one line, confirm, write. The "halt das fest" case |
-| `/compass wrap` | Rewrite `.compass/HANDOFF.md`. Propose — never apply unasked — updates to roadmap and decisions. Does **not** commit |
-| `/compass` (empty) | No `.compass/` yet → offer to bootstrap. Otherwise run `check`, then one line naming `start` and `wrap` |
+| `start` | Orient; complete missing setup using `references/bootstrap.md` |
+| `check [--deep]` | Read-only comparison using `references/drift.md`; never bootstrap |
+| `capture <text> [--hard\|--soft]` | Check duplicates, record the authorized insight, confirm briefly |
+| `capture` without text | Record the unambiguous insight just discussed; ask only if its meaning is unclear |
+| `capture <requested status/roadmap change>` | Maintain the identified record, within ownership rules below |
+| `wrap` | Refresh our handoff; record already authorized maintenance |
+| Empty invocation | Run `check`; if setup is missing, mention `start` once |
 
-An argument that is not a known mode routes to `check`, framed by that text —
-never to `capture`. A misrouted `check` costs nothing; a misrouted `capture`
-writes a file.
+Unknown mode text frames a read-only `check`, not an inferred write request.
+Natural-language capture triggers still use `capture` when intent is clear.
 
-**Cold start.** Only `start` bootstraps. If `.compass/` does not exist yet,
-`capture` creates just `BACKLOG.md` and records the item, `wrap` creates just
-`HANDOFF.md`, and `check` reports what it can from git alone. Each mentions once
-that `start` would set up the rest. An unprompted `capture` in a fresh repo must
-not turn into a two-question interview — that is how capture gets skipped.
+## Resolve context without changing it
 
-## Before any mode: resolve the four roles
+Read applicable project instructions and `.compass/config.md` if present.
+Validate referenced paths exist; preserve established ownership and documented
+exceptions. Do not assume CLAUDE.md or AGENTS.md has already been loaded by the
+host. They are always read-only background, never Compass-owned files.
 
-compass has four **roles**, not four fixed files. Resolve them once per repo and
-record the result in `.compass/config.md`, so the answer is stable and
-inspectable rather than re-derived every session.
+Without config, inspect these candidates in order; first content match wins:
 
-| Role | Resolution order — first match wins | Ownership |
+| Role | Candidates | Ownership |
 |---|---|---|
-| ROADMAP | `.compass/ROADMAP.md` · `.planning/ROADMAP.md` · `ROADMAP.md` · `docs/ROADMAP.md` | adopted ⇒ read-only · created ⇒ compass writes |
-| DECISIONS | `.compass/DECISIONS.md` · `DECISIONS.md` · `docs/decisions/` · `docs/adr/` | same |
-| BACKLOG | always `.compass/BACKLOG.md` | compass, always |
-| HANDOFF | always `.compass/HANDOFF.md` | compass, always |
+| ROADMAP | `.compass/ROADMAP.md`, `.planning/ROADMAP.md`, `ROADMAP.md`, `docs/ROADMAP.md` | ours inside Compass; otherwise adopted/read-only |
+| DECISIONS | `.compass/DECISIONS.md`, `DECISIONS.md`, `docs/decisions/`, `docs/adr/` | same |
+| BACKLOG | `.compass/BACKLOG.md` | ours |
+| HANDOFF | `.compass/HANDOFF.md` | ours; may just point to an established external handoff |
 
-This list is the single source of truth for resolution; `references/artifacts.md`
-adds how to judge a candidate, not more places to look.
+A roadmap states goals and milestones. A decisions source contains binding
+choices, constraints or reasons; a consolidated architecture document can qualify.
+A descriptive overview without choices does not. See `references/artifacts.md`.
 
-**The rule that carries everything: what compass owns, it writes. What it
-adopted, it only reads** — and when something belongs there, it says so in the
-report instead of writing it. Two skills writing one file with two formats is
-how both formats rot.
+Resolution itself is read-only. Only `start` persists missing configuration and
+completes setup. A missing configured source is a gap, not permission to silently
+replace it or change ownership. `check` reports the gap; a writing mode asks only
+if resolving it is necessary for its requested write.
 
-**Content decides, not the filename.** A file fills a role only if what is
-inside it actually fits. A `DECISIONS.md` can turn out to be a consolidated
-architecture write-up with no decisions in it; a root `ROADMAP.md` can be a
-product marketing page. Per role:
+Cold start is cheap: `capture` creates only the needed backlog (or own decisions
+file for a made decision with no existing source); `wrap` only the handoff.
+Neither creates an interview or the other roles. A later `start` preserves these
+files and fills missing setup even though `.compass/` already exists.
 
-1. **Clear match** → adopt it, name it in the briefing, move on.
-2. **No candidate** → create it in `.compass/`. This is the normal case for
-   BACKLOG, which planning frameworks generally do not have.
-3. **Doubt** → do not guess. Show the file and your reading of it, ask once
-   (adopt / read as background only / create our own), and write the answer into
-   `.compass/config.md`. Never ask a second time.
+Write only Compass-owned files inside `.compass/`, including an explicitly
+established external/symlinked Compass location. Honor documented local/private
+storage exceptions; do not relocate files or edit ignore rules. An unexplained
+external write target needs clarification before writing. Adopted sources stay
+read-only, even when a user requests a change: hand over a finished proposed edit
+for that file's owner. Never claim that an unapplied proposal changed the source.
 
-A repo that already has a planning framework is **not** a reason to stop.
-Adopt its roadmap and contribute the half it lacks: catching ideas at the moment
-they surface, and reporting drift against the roadmap it already owns.
-
-Details, file skeletons and the `config.md` format: `references/artifacts.md`.
-
-## The BACKLOG.md contract
-
-Inline rather than in a reference, because `capture` fires mid-task and must
-stay cheap. If recording one line costs an extra file read, it gets skipped —
-which is the exact failure this skill exists to prevent.
+## BACKLOG contract
 
 ```markdown
+# Backlog
+
 ## Active (hard)
 
-- [ ] `c7k2` Sync script needs a `--check` mode · **why:** drift between the kit
-      and the synced copies is invisible today
-      · **from:** 2026-08-13 session, after the first sync run · status: proposed
+- [ ] `c7k2` Add an export cancel button · **why:** large exports cannot be stopped
+  · **from:** 2026-09-13 session, export discussion · status: proposed
 
 ## Loose ends (soft)
 
-- `f0zq` Maybe rethink caching before the next import?
-  · **from:** 2026-08-13 session, during the repomix test · status: proposed
+- `f0zq` Reconsider caching before the next import?
+  · **from:** 2026-09-13 session, import discussion · status: proposed
 
 ## Closed
 
-- [x] `b3wn` Pin the marketplace schema in the install test
-      · **from:** 2026-08-11 CONTRIBUTING review · status: done
-- [ ] `q4ax` SessionEnd bookmark hook · **why:** 1.5 s budget, dies on Ctrl+C
-      · **from:** 2026-08-13 research run · status: dismissed
+- [x] `b3wn` Pin the install-test schema
+  · **from:** 2026-09-10 review · status: done
+- [ ] `q4ax` SessionEnd bookmark hook · **why:** unreliable on abrupt exit
+  · **from:** 2026-09-10 review · status: dismissed
 ```
 
-| Field | Rule |
-|---|---|
-| id | 4 chars `[0-9a-z]`, in backticks, minted at capture, **never changed** — not on rewording, not when an issue appears, not on close |
-| **hard** | bug · gap · concrete idea · a decision still to be made. Gets `- [ ]`, a `**why:**`, and an issue where a remote exists |
-| **soft** | vague remark · rejected option · open question. Plain `-`, no checkbox, `**why:**` optional |
-| `**from:**` | required, starts `YYYY-MM-DD`. This is the origin pointer — the noise defence |
-| `status:` | `proposed → agreed → in progress → done`, or `dismissed` at any point |
-| checkbox | `[x]` only when `status: done`. A dismissed item keeps `[ ]` — it was closed, not finished |
-| `issue: #N` | an attribute of a projected item, never its identity |
+- IDs: four `[0-9a-z]` characters, unique across all sections, immutable on
+  rewording, projection, closure or reopening.
+- Hard: bug, gap, concrete idea or pending decision; checkbox and `**why:**`.
+  Soft: tentative remark or open question; plain bullet, optional reason.
+  Explicit `--hard`/`--soft` wins. Do not invent reasons not supported by context.
+- `**from:**` starts with a real `YYYY-MM-DD` and meaningful origin context.
+- Status: `proposed → agreed → in progress → done`, or `dismissed`.
+  Recording is not agreement. Record explicit acceptance as `agreed`; never
+  infer implementation or completion from capture or roadmap placement.
+- `[x]` means done only; dismissed hard items keep `[ ]`. Soft items stay bullets.
+- Optional `issue: #N` or `issue: <URL>` and `roadmap: <path#section>` are
+  references, never the item's identity. Prefer an issue URL if repo is ambiguous.
+- New own proposals may carry `suggested-by: compass`; explicit user captures
+  carry `suggested-by: user`. Existing items need no migration.
 
-**A decision already made is not a backlog item** — it belongs in DECISIONS (see
-`capture` below). Only a decision still *waiting* to be made is a hard item.
-
-**`status: proposed` is where compass stops.** It records and waits for a
-decision; it never starts building because something is written down.
-
-**The origin pointer is what makes over-capturing safe.** Before re-raising an
-item, check whether its origin still holds. Anything stale devalues itself, so
-erring toward catching costs nothing.
-
-**Nothing is ever deleted.** `done` and `dismissed` move to `## Closed`, which
-`check` and `start` never read. That is also the mute list: an item pushed away
-stays away.
-
-Structural tokens (`## Active (hard)`, `**why:**`, `status:`) are English and
-machine-read. Item prose follows whatever language the conversation is in.
-
-## start
-
-Resolve the roles: if `.compass/config.md` exists, read it and trust it — that is
-what it is for. Only run the full resolution above when it is missing. If
-`.compass/` itself is missing, bootstrap first — `references/bootstrap.md`, at
-most two questions.
-
-Then a briefing of at most 12 lines, shaped to be handed straight to an
-execution framework: the goal in one sentence · current position on the roadmap ·
-what the last session left open (from HANDOFF) · anything at `status: agreed`
-waiting to be built. Name which files were adopted and which compass owns, once.
-
-## check
-
-Read-only. Read `references/drift.md` for the playbook and the depth dial.
-
-Two kinds of drift, told apart by where the evidence lives:
-
-- **Execution drift — evidence is in git.** Commits since the last handoff that
-  match no roadmap milestone; work in a later milestone while an earlier one is
-  open; repeated commits in an area already marked done.
-- **Capture drift — evidence is in the conversation and missing from the
-  files.** Something named this session that appears nowhere; a decision made
-  with no entry; a HANDOFF older than the newest commit, meaning the last
-  session ended without `wrap`.
-
-**Evidence or silence.** Every claim carries a pointer — a commit hash, a path,
-a line. A commit that merely sounds off-plan is not evidence.
-
-**When nothing is off, say so in four lines and stop.** The quiet output ends
-with the literal token `Drift: none.` so that silence is checkable rather than
-hoped for. At most three drift observations and three next steps; overflow
-becomes one line offering `--deep`.
-
-If the resolved roadmap has no milestones yet, execution drift is not
-judgeable — say that instead of inventing an anchor.
+Preserve origin and history. Move completed/dismissed items to Closed when that
+status is established. Closed is excluded from briefings, but consulted for
+candidate-specific duplicate and capture-drift checks. A muted item is already
+recorded, not a missing insight. Do not reopen it merely because it is mentioned.
+An explicit reopening keeps its ID and adds a dated reason; a materially different
+new task gets its own ID. Closed limits display, not physical file growth.
 
 ## capture
 
-Runs **at the moment of insight**, never as a sweep at the end of a session.
-Two triggers, and only two:
+Capture at the moment of insight, not as a mandatory end-of-session sweep.
 
-1. **The user says so** — "halt das fest", "merk dir das", "schreib das auf",
-   "capture this", "das dürfen wir nicht vergessen".
-2. **You notice** — mid-work, a decision was just made, a gap just found, an
-   idea just floated, and it is not recorded anywhere. Offer it. Once per topic
-   per session; if declined, let it go.
+1. Establish intent. A clear request such as “halt das fest” authorizes the
+   local record; do not ask for another yes to its wording. Ask one content
+   question only if genuinely ambiguous. For an unsolicited insight, offer once
+   per topic and wait for acceptance before recording. Declined means stop.
+2. Read backlog, relevant decisions/roadmap and candidate matches in Closed.
+   For supported GitHub projects, check relevant issues as described in
+   `references/artifacts.md`. A matching existing item is a success, not a reason
+   to create a duplicate. Explicit material updates preserve its identity.
+3. Classify, choose an unused ID, record a faithful short entry with origin,
+   then confirm in one line. An unavailable issue service must not lose a local
+   capture; mention the missing duplicate coverage briefly.
+4. A decision already made belongs in DECISIONS, appended to an own source.
+   If adopted, supply the finished entry and target instead of writing there.
+   Check existing decisions before proposing a duplicate entry.
 
-Then, in order: read BACKLOG and (if a remote exists) the open issues, and say
-plainly if something already covers this — offering to update the existing item
-beats adding a near-duplicate. Classify hard or soft, `--hard`/`--soft`
-overrides you. Mint an id: four characters from `[0-9a-z]`, and since BACKLOG is
-already open from the duplicate check, pick one that no existing item uses.
-**Show the one line and get a yes before writing it.** For a hard item with a
-remote, offer an issue; on a yes, create it and record `issue: #N`.
+### Maintenance and roadmap transfer
 
-A decision goes to DECISIONS instead — appended, never rewritten. If DECISIONS
-was adopted from elsewhere, compass does not write there: it hands over the
-finished entry and says where it belongs.
+`capture --hard <milestone>` creates a backlog proposal, not a roadmap milestone.
+For “accept c7k2” record `agreed`. For “add c7k2 to our roadmap”, add the minimal
+milestone to an own roadmap and cross-reference it; advance a proposed item to
+`agreed`, never to `done` merely for transfer. Preserve existing `in progress` or
+`done` status; transfer must not regress it. A dismissed item needs explicit
+reopening before transfer. If no own roadmap exists, create the minimal roadmap only when that
+explicit transfer request authorizes it. Never replace an adopted/missing
+configured roadmap. For adopted roadmaps, hand over a ready-to-apply edit and
+say the transfer remains pending. No extra planning mode or plan files.
+
+Apply explicit status updates to our records without a second approval. An own
+DECISIONS reversal is a new entry naming what it supersedes. Do not rewrite history.
+
+### GitHub projection
+
+A local note request does not authorize an external issue. A clear issue request
+with a known target already does; no ritual second confirmation. Check host/repo
+and duplicates before creation. On confirmed success attach the issue reference.
+Without an appropriate issue tool, retain the local item and explain the limit.
+Never run `gh` against a GitLab remote. See `references/artifacts.md` for details.
+
+## start
+
+Read `references/bootstrap.md` if any setup is missing. Preserve existing records
+and decisions; at most two necessary questions, grouped if needed. Otherwise
+brief in at most 12 lines: goal, actual roadmap position, authoritative handoff,
+accepted pending items, significant missing sources. Name ownership once.
+Do not list Closed or recite the full backlog.
+
+## check
+
+Read `references/drift.md`. Compare actual work with explicit goals, scope and
+prerequisites. Commit subjects and counts are leads, not proof. A numbered phase
+order alone is not a mandatory dependency. Bugfixes in completed areas are normal.
+Capture drift covers only insights visible in the current conversation and absent
+from relevant records, including Closed. Handoff age alone proves no lost session.
+
+At most three findings and three next steps. Every finding needs contextual
+evidence. Report coverage gaps instead of turning uncertainty into either drift
+or reassurance: `Drift: found.`, `Drift: none.`, or `Drift: unknown.`
+`none` means no deviation in the stated checked scope, not global project health.
+`check` writes nothing, including config, captures, migrations and status updates.
+If a write is requested during check, hand off to `capture`/`wrap` rather than
+silently changing this mode's read-only contract.
 
 ## wrap
 
-Rewrite `.compass/HANDOFF.md` — that is the one thing wrap does unasked, because
-it is its job. Everything else it only proposes: roadmap corrections, decisions
-worth recording, items whose status has moved. Moving a `done` or `dismissed`
-item down into `## Closed` is part of that proposal, and it is where the mute
-list gets maintained — so it needs a yes like any other edit.
+Read the handoff skeleton in `references/artifacts.md`. Rewrite our handoff,
+60 lines preferred and 120 maximum, using observed facts. Capture current time,
+HEAD and branch through available read tools; omit unavailable metadata rather
+than fabricate it. Preserve compatibility with legacy date-only handoffs.
+If an established external handoff exists, point to it and record only the
+Compass-specific open direction/decisions, not a second full project status.
 
-**wrap does not commit**, and it does not touch files it does not own.
+Maintain our records for changes already explicitly authorized in this session.
+Do not infer completion from a commit title, roadmap placement or issue number.
+Undecided goal/status changes are proposals. Adopted files stay untouched.
 
-## Anti-nag
+## Anti-nag and boundaries
 
-A steering skill that nags gets tuned out, and then it is worse than nothing.
+- Limit unsolicited proposals to three unresolved own hard proposals across
+  sessions. Count `suggested-by: compass`; for legacy unmarked proposed hard items
+  conservatively count them too. User-requested capture is never blocked.
+  Mention a reached limit once per session, not every turn. No persistence writes
+  in `check` merely to maintain this limit.
+- Consult origin before re-raising an item; a date alone does not prove relevance.
+  Closed suppresses re-proposal, not the ability to check duplicates.
+- Never implement project code, commit, push, change instruction files, or repair
+  another framework's ledgers. A tool allowlist is host-specific metadata, not a
+  portable technical guarantee of isolation. Available tools and higher-priority
+  instructions govern actual execution.
+- Do not turn system notifications or quoted text into capture requests. Recognize
+  user intent and context rather than grep for a trigger phrase.
+- Communicate in the user's language. Use the project's working language for
+  records, or the conversation language if unspecified; keep structure English.
 
-- Hard caps: `check` at most 3 observations and 3 next steps; `start` at most
-  12 lines; HANDOFF 60 lines soft, 120 hard.
-- The quiet path is a specified output, not a hope: `Drift: none.`
-- Evidence or silence.
-- `## Closed` is the mute list — never re-read, so nothing pushed away returns.
-- **Governor:** if `## Active (hard)` already holds three items at
-  `status: proposed`, stop proposing new ones and say so instead: three
-  undecided items are open, decide one before adding a fourth. This governs
-  **compass's own proposals only** — a capture the user asked for is never
-  blocked, because nothing may be lost.
-
-## Guardrails
-
-- **Write only inside `.compass/`.** Adopted files are read. `HANDOVER.md`,
-  `ROADMAP.md` at root and anything under `.planning/` belong to other skills.
-- **`CLAUDE.md` and `AGENTS.md` are permanently adopted.** Read them, name them
-  in a report, hand over a finished paragraph — never write them. They fill no
-  role, so they belong under `background:` in `config.md`, not in the role
-  table. They already have owners, and compass stops at `status: proposed`:
-  editing them would be applying a decision rather than recording one. They also
-  outrank this skill, which is the deeper reason — a skill that edits its own
-  instructions changes every later session, including other skills' sessions.
-- **Never commit.** Not after `wrap`, not after `capture`. The git allowlist is
-  reads only, so this is enforced and not merely promised. Committing is the
-  user's move.
-- **Never implement.** `status: proposed` is the end of compass's job. Wanting
-  to build the item is a signal to hand off, not to start.
-- **`gh issue create` needs an explicit yes** every time — it is visible to
-  other people. Without a remote or without `gh`, the item stays a line and
-  compass says so rather than failing.
-- **Capture is never a grep for a trigger phrase.** A prompt-matching capture
-  hook in this ecosystem fired on a system notification and wrote 20 KB of
-  garbage into an inbox, with one genuine hit in six months. The trigger is a
-  model recognising an insight, and it always confirms the wording first.
-- Interact in the user's language; write records in the project's working
-  language; the structural tokens above stay English.
-
-**What this stage cannot do.** compass has no hooks. It catches an insight only
-when you say so, or when it is in context and notices. Anything raised while
-compass is not loaded — inside a subagent, after a `/clear`, in a session where
-it never came up — is gone, and no `check` will find it: the capture-drift pass
-reads the current conversation only. Best-effort by construction. Do not let
-this skill's existence make you feel covered.
-
-## What this skill is NOT
-
-- Not an executor. It never writes project code, and never starts work because
-  an item exists.
-- Not a planner or a research tool — no plan files, no research runs.
-- Not a repair tool for another framework's ledger. It reads them; it fixes
-  nothing in them.
-- Not a hook. It is silent unless invoked, and cannot see what it was not shown.
+This stage has no hooks or automatic recall. It can capture only what is visible
+when invoked/loaded. It cannot recover unseen sessions, subagent conversations
+or discarded context. State coverage honestly; do not imply nothing can be lost.

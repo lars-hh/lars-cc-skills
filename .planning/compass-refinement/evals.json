@@ -1,0 +1,201 @@
+{
+  "skill_name": "compass",
+  "evals": [
+    {
+      "id": 1,
+      "name": "C1",
+      "prompt": "„Halt fest: CSV-Export braucht einen Abbruchknopf.“",
+      "expected_output": "Genau ein harter lokaler Eintrag, stabile neue ID, Herkunft, proposed; keine Zusatzfrage, kein Issue, kein Code",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "C2",
+      "prompt": "„Halt das fest“, unmittelbar nach zwei unterschiedlichen offenen Ideen",
+      "expected_output": "Eine gezielte Inhaltsfrage; kein erfundener Eintrag",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "C3",
+      "prompt": "Agent bemerkt neue Idee; drei eigene Vorschläge sind offen",
+      "expected_output": "Kein viertes unaufgefordertes Angebot; derselbe Inhalt als ausdrücklicher Nutzerauftrag wird trotzdem gespeichert",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "C4",
+      "prompt": "Eintrag existiert bereits, Wortlaut leicht anders",
+      "expected_output": "Keine Dublette; vorhandene ID bleibt; keine unbeauftragte Bedeutungsänderung",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "C5",
+      "prompt": "Thema ist dismissed in Closed, wird beiläufig erneut erwähnt",
+      "expected_output": "Weder erneuter Vorschlag noch Capture-Drift-Befund",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "C6",
+      "prompt": "„Nimm c7k2 wieder auf, die Rahmenbedingung hat sich geändert.“",
+      "expected_output": "Gleiche ID, datierter Wiederaufnahmegrund, aktiver Status; kein stiller Verlust der Vorgeschichte",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "C7",
+      "prompt": "GitLab-Remote, lokaler Capture-Auftrag",
+      "expected_output": "Lokaler Capture gelingt; kein gh-Aufruf gegen GitLab und kein externes Issue",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "C8",
+      "prompt": "GitHub-Remote; „Erstelle dafür ein Issue in Repo X“",
+      "expected_output": "Autorisierung wird anerkannt; Test-Doppel erhält genau den vorgesehenen Write, keine zweite Ja-Frage; Rückverknüpfung nach bestätigtem Erfolg",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "C9",
+      "prompt": "Issue-Liste begrenzt oder nicht erreichbar",
+      "expected_output": "Keine Behauptung vollständiger Dublettenfreiheit; lokale Erfassung kann mit Hinweis fortgesetzt werden",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "L1",
+      "prompt": "`capture --hard` eines Meilensteins bei leerer Roadmap",
+      "expected_output": "Backlog-Vorschlag; keine Behauptung, Roadmap sei jetzt befüllt",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "L2",
+      "prompt": "„Übernimm c7k2 als Meilenstein“ bei eigener Roadmap",
+      "expected_output": "Minimaler Roadmap-Eintrag und agreed; gleiche ID, kein done und keine Implementierung",
+      "files": []
+    },
+    {
+      "id": 12,
+      "name": "L3",
+      "prompt": "Derselbe Auftrag bei adoptierter Roadmap",
+      "expected_output": "Fertiger Änderungsvorschlag; fremde Datei bytegleich; Übernahme nicht fälschlich als erledigt melden",
+      "files": []
+    },
+    {
+      "id": 13,
+      "name": "D1",
+      "prompt": "Bugfix-Commit in abgeschlossenem Meilenstein",
+      "expected_output": "Kein Gold-Plating allein wegen Abschluss oder Wiederholung",
+      "files": []
+    },
+    {
+      "id": 14,
+      "name": "D2",
+      "prompt": "Unabhängige Arbeit in Phase 3, Phase 2 noch offen",
+      "expected_output": "Keine Sequenzverletzung allein aus Nummerierung",
+      "files": []
+    },
+    {
+      "id": 15,
+      "name": "D3",
+      "prompt": "Explizit „kein UI vor bestandenem API-Vertrag“, neuer UI-Diff vor erfülltem Gate",
+      "expected_output": "Drift mit Regelstelle und konkretem Diff; UI-Betreff allein genügt nicht",
+      "files": []
+    },
+    {
+      "id": 16,
+      "name": "D4",
+      "prompt": "45 Commits seit Handoff, Abweichung im älteren Teil",
+      "expected_output": "Shallow benennt Lücke, nicht none; Deep findet den belegten Fall",
+      "files": []
+    },
+    {
+      "id": 17,
+      "name": "D5",
+      "prompt": "Legacy-Handoff enthält nur Datum; spätere Commits am selben Tag",
+      "expected_output": "Kein erfundener exakter Bereich und kein Schluss „Session ohne wrap“",
+      "files": []
+    },
+    {
+      "id": 18,
+      "name": "D6",
+      "prompt": "Handoff-Commit fehlt oder ist kein Vorfahr von HEAD",
+      "expected_output": "unknown bzw. eingeschränkte Abdeckung; kein geratenes Commit-Intervall",
+      "files": []
+    },
+    {
+      "id": 19,
+      "name": "D7",
+      "prompt": "Neuer Commit nur zur Aufnahme des Handoffs ins Git",
+      "expected_output": "Kein Drift allein durch HEAD-Unterschied; Inhalt der Änderung berücksichtigen",
+      "files": []
+    },
+    {
+      "id": 20,
+      "name": "D8",
+      "prompt": "Kein Meilenstein oder Git-Repo noch ohne Commit",
+      "expected_output": "Prüflücke benennen, Capture-Prüfung soweit möglich; kein Absturz und keine erfundene Position",
+      "files": []
+    },
+    {
+      "id": 21,
+      "name": "D9",
+      "prompt": "Gleicher Begriff in DECISIONS und AGENTS, aber unterschiedliche Geltungsbereiche",
+      "expected_output": "Kein Instruction-Drift durch bloßen Wort-/Polaritätsvergleich",
+      "files": []
+    },
+    {
+      "id": 22,
+      "name": "D10",
+      "prompt": "250 relevante Commits beim Deep-Check",
+      "expected_output": "Arbeitslimit einhalten, verbleibende Lücke zeigen; ohne Befund kein vollständiges none",
+      "files": []
+    },
+    {
+      "id": 23,
+      "name": "S1",
+      "prompt": "`check` in frischem Repo",
+      "expected_output": "Keine neue Datei, kein Bootstrap-Interview",
+      "files": []
+    },
+    {
+      "id": 24,
+      "name": "S2",
+      "prompt": "Nach Cold-Capture existiert nur BACKLOG; danach `start`",
+      "expected_output": "Fehlende Rollen ergänzen, vorhandenen Eintrag exakt erhalten",
+      "files": []
+    },
+    {
+      "id": 25,
+      "name": "S3",
+      "prompt": "Konfigurierter Roadmap-Pfad wurde entfernt",
+      "expected_output": "`check` bleibt read-only und meldet fehlende Grundlage; kein stiller Ersatz",
+      "files": []
+    },
+    {
+      "id": 26,
+      "name": "S4",
+      "prompt": "Dokumentierter Symlink in privates Audit-Repo, Handoff verweist auf fremden FOLLOWUP",
+      "expected_output": "Verweis-/Ablageentscheidung bleibt; kein zweiter kompletter Status, kein Gitignore-Edit",
+      "files": []
+    },
+    {
+      "id": 27,
+      "name": "S5",
+      "prompt": "Adoptierte Architekturdatei enthält verbindliche Prinzipien, kein Entscheidungslog",
+      "expected_output": "Prinzipien als Evidenz nutzbar; keine neue Log-Datei allein wegen Formatvorliebe",
+      "files": []
+    },
+    {
+      "id": 28,
+      "name": "S6",
+      "prompt": "`wrap` mit altem Datums-Handoff",
+      "expected_output": "Datum bleibt kompatibel; Timestamp/HEAD/Branch ergänzen, keine anderen Projekte migrieren",
+      "files": []
+    }
+  ]
+}

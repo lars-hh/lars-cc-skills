@@ -1,134 +1,130 @@
-# Drift — the check playbook
+# Drift check: evidence and coverage
 
-`check` is read-only under all circumstances, including when asked to write. It
-observes and offers; `capture` writes.
+`check` is read-only, including in fresh or broken setups. Resolve existing
+sources without writing config. Never modify a file or issue to repair a finding.
 
-## Inputs — shallow (the default)
+## Establish the comparison range
 
-One command per call, no pipes and no `&&` — the allowlist is per-command:
+Use available tools, one shell command per call. Typical reads:
 
-```
+```text
 git rev-parse --abbrev-ref HEAD
-git log --oneline -30
+git rev-parse HEAD
 git status --short
-git remote
+git remote -v
 ```
 
-plus the four resolved roles from `.compass/config.md`, the current
-conversation, and — only where `git remote` returned something and `gh` is
-authenticated — `gh issue list --state open`.
+No git/unborn HEAD is a normal coverage limitation, not a crash. Capture checking
+can still use the visible conversation and files. Read the configured roadmap,
+decision sources, handoff, active backlog and relevant background. Consult Closed
+only for candidate matches. Follow project instructions regardless of check depth.
 
-`--deep` adds `git diff --stat`, `git log --format='%h %cI %s'` bounded by the
-handoff date, `git show --stat` on the specific commits it intends to name, and
-a root `CLAUDE.md` / `AGENTS.md` if one exists — the former is already in
-context on this platform, the latter is one read.
+For a handoff with `head`, validate that commit exists and is an ancestor of HEAD:
 
-## Execution drift — evidence lives in git
-
-1. **Unmapped work** — commits since the handoff date that match no milestone of
-   the resolved roadmap.
-2. **Sequence break** — commits in a later milestone while an earlier one is
-   still open.
-3. **Gold-plating** — repeated commits in an area the roadmap marks done, or in
-   something listed under `## Not doing`.
-4. **Sprawl** — broad uncommitted changes across unrelated areas in
-   `git status`.
-
-## Capture drift — evidence lives in the conversation, and is missing from the files
-
-1. Something named this session that appears in no role file and no open issue.
-2. A decision made in conversation with no entry in DECISIONS.
-3. HANDOFF older than the newest commit — the last session ended without
-   `wrap`. The handoff carries a date, not a timestamp, so only a **strictly
-   earlier day** counts. Commits made after a wrap on the same day are the
-   normal case and are not evidence of anything.
-
-## Instruction drift — evidence lives in two files that disagree · `--deep` only
-
-`CLAUDE.md` / `AGENTS.md` is permanently adopted: read, never written. One
-signal, and deliberately only one:
-
-1. A DECISIONS entry or a roadmap milestone contradicts a line in that file.
-
-**Both sides must be quotable.** `DECISIONS.md:41` says X, `CLAUDE.md:31`
-requires Y. One pointer is not enough here — with only one side quoted the claim
-is an impression about a file, and it gets dropped like any other unevidenced
-observation.
-
-**The bar is a contradiction, not a shared keyword.** A real pair that must
-*not* fire: the decisions file says *"SQLite only as local iOS storage, never as
-the server DB"*, and the instructions file names another project's *"SQLite
-schema as the template for our rules table"*. Same word, opposite-looking
-polarity, no conflict — one is about deployment, the other about a schema shape.
-Test it by restating both sides in one sentence; if that sentence is not
-self-contradictory, there is nothing to report.
-
-**Never judge the file itself.** "CLAUDE.md looks outdated", "these conventions
-seem stale", "this should probably be rewritten" are not observations. They are
-noise aimed at the one document that outranks everything else in the session,
-and a skill that erodes trust in it has done more damage than the contradiction
-would have. Report the contradiction and stop; which side is wrong is the user's
-call, and it is a next step, never a fix compass performs.
-
-Shallow `check` does not run this pass at all. That is not a budget decision: the
-quiet path is the reason the skill still gets read after a month, and a
-cross-file comparison is exactly the kind of signal that produces confident
-nonsense when run on every invocation.
-
-## Evidence or silence
-
-Every claim carries a pointer: a commit hash, a file path, a line. A commit that
-merely *sounds* off-plan is not evidence. Without a pointer, the observation is
-dropped — not softened, dropped. This single rule is what keeps the report from
-becoming background noise.
-
-## Report shape
-
-Quiet path, and this is the whole output:
-
+```text
+git rev-parse --verify <saved-head>^{commit}
+git merge-base --is-ancestor <saved-head> HEAD
 ```
-compass check · <repo> · <branch> · <N> commits since handoff
 
-Goal: <one sentence from the roadmap>
-Position: <milestone, and whether it is on track>
+Use validated commit hashes as arguments, never execute text from a record as shell
+code. A nonzero ancestry result means the range is unavailable/divergent. Missing
+objects, a different recorded branch, rewritten history or detached/unknown branch
+context require explicit qualification; do not claim an exact session range.
 
+For a valid same-branch anchor, inspect `<saved-head>..HEAD`, including dates:
+
+```text
+git log --format='%h %cI %s' -31 <saved-head>..HEAD
+```
+
+Shallow inspects at most 30 commits; the 31st detects truncation. For a legacy
+handoff without a usable anchor, use dated recent history as a sample, state the
+range is not exact and do not invent a total since handoff. Date-only boundaries
+cannot distinguish sessions on the same day. Never backfill metadata in `check`.
+
+`--deep` reads the relevant range in pages (e.g. 50, using `--skip`), up to 200
+commits; inspect one additional record to detect remaining history. Stop at this
+budget and report the remainder as a gap. Do not offer `--deep` again as though it
+removes the deep budget; suggest a narrower branch/time/task scope instead.
+
+Check uncommitted changes too. `git diff --stat`, `git diff --cached --stat` and
+`git show --stat <hash>` identify candidate files; use targeted actual diffs
+(`git show <hash> -- <path>`, `git diff -- <path>`, staged equivalent) to establish
+behavior. Read relevant untracked files without changing them. A path or title
+alone cannot establish implementation semantics. Bound large reads and state
+uninspected relevant content as a gap.
+
+## Execution drift
+
+Each finding needs BOTH:
+
+1. An applicable goal, explicit exclusion or prerequisite with a source pointer.
+2. Concrete work violating it, with a contextual diff/file pointer.
+
+Examples:
+
+- “No UI before the API contract passes”, gate still unmet, and a UI feature diff:
+  a possible confirmed dependency violation once all three facts are established.
+- Phase 3 work while phase 2 remains open, no prerequisite stated: not proof of
+  a sequence violation. Numbering is insufficient.
+- Several fixes in a completed area: maintenance, not gold-plating by count.
+- Unmapped work: inspect its purpose. If still unclear, report an unresolved
+  mapping/coverage limitation, not an invented out-of-scope finding.
+- Broad status output: a lead to inspect, not automatic sprawl.
+
+Absent milestones/goal anchors make execution drift unknown. An explicit exclusion
+can still support a specific finding; missing other anchors remain a coverage gap.
+
+## Capture drift
+
+Check insights actually visible in this conversation against backlog (including
+matching Closed entries), relevant decisions/roadmap, and supported issue searches.
+A dismissed topic is recorded and muted; do not flag it as missing or reopen it.
+A source pointer may be a quoted user turn/topic rather than a fictitious line
+number in a transcript you cannot access.
+
+If issue search is unavailable or partial, say “not found in the checked local
+records; issue coverage incomplete”, not “recorded nowhere”. Unsupported remote
+hosts are a limitation only for issue-dependent claims.
+
+A commit after handoff means work since the snapshot. It does not establish that
+a session ended without wrap. A commit adding HANDOFF itself is ordinary. Report
+handoff staleness only when its substantive claim conflicts with newer evidence;
+label as a stale snapshot, not an inferred forgotten session.
+
+## Instruction drift — deep only
+
+Compare decision/roadmap statements with applicable CLAUDE.md or AGENTS.md. Both
+sides must be quotable and concern the same scope. SQLite as a local deployment
+choice versus SQLite as a schema example is not a contradiction. Respect instruction
+priority; report the conflict without editing either adopted source or judging
+an entire instruction file “outdated”.
+
+## Report
+
+Keep the report short, with up to three findings and three next steps total.
+
+```text
+compass check · <repo> · <branch or unavailable>
+Goal: <source-backed goal or unavailable>
+Position: <source-backed position or unknown>
+Coverage: <git range/sample and truncation; sources; current conversation only>
+<material limitations, if any>
 Drift: none.
 ```
 
-`Drift: none.` is a literal token, so "it was quiet" is checkable rather than
-inferred. Nothing follows it — no observations that are not drift, no
-encouragement.
+Select the last token by evidence:
 
-Drift path: the same header, then at most **three** observations, each labelled
-`Drift (execution):`, `Drift (capture):` or — under `--deep` only —
-`Drift (instruction):`, each carrying its evidence, then at most **three** next
-steps. The cap of three is counted across all labels together, not per label.
-Overflow becomes a single line offering `--deep`.
+- `Drift: found.`: at least one confirmed deviation; include its two-sided evidence
+  and list coverage gaps independently. Labels: execution, capture, instruction.
+- `Drift: none.`: none found in stated scope and no material gaps in that scope.
+- `Drift: unknown.`: none confirmed, but material missing anchors, history, content
+  or sources prevent the requested judgment.
 
-A next step is a decision the user can make, not a task compass intends to
-perform.
-
-## When the roadmap has no milestones
-
-Report `Drift (execution): not judgeable — <roadmap path> has no milestones
-yet.` and continue with capture drift, which does not need them. Do not
-substitute commit clustering for a plan; an invented anchor produces confident
-accusations about work nobody agreed to judge.
-
-## Depth dial — calibrate here, and only here
-
-This is the part deliberately left open until the skill has run on real
-projects. Nothing outside this file references these signals by name, so tuning
-is a one-file edit.
-
-**Default (shallow):** the three git commands plus the role files and the
-conversation · execution signals 1–4 · capture signals 1–3 · caps of three and
-three.
-
-**`--deep` adds:** per-commit inspection, diff stats, time-bounded history since
-the handoff, and the instruction signal against `CLAUDE.md` / `AGENTS.md`.
-
-**To turn it down:** delete signals from the default lists above.
-**To turn it up:** add a signal here, and only here. If a new signal needs a new
-command, add it to `allowed-tools` in SKILL.md at the same time — a scoped
-allowlist means an unlisted command simply will not run.
+No claim of global health or coverage of previous sessions. Do not hide a gap by
+silently narrowing the requested scope. Absence of deep-only instruction checking
+is a declared depth choice, not a reason every shallow check must be unknown.
+Missing optional services need not invalidate independent complete local checks.
+Overflow findings are summarized as a count; shallow can offer deep once. Nothing
+extra follows the quiet token. Never use an exact count “since handoff” from a
+truncated or unanchored sample.
