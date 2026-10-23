@@ -161,6 +161,11 @@ brief in at most 12 lines: goal, actual roadmap position, authoritative handoff,
 accepted pending items, significant missing sources. Name ownership once.
 Do not list Closed or recite the full backlog.
 
+If the current milestone carries a `Goal: <path>` line, print that path in the
+briefing as the ready `/goal` source (e.g. `/goal` pointing at that file). Read
+the file only to confirm it exists; never copy its condition into the roadmap or
+the briefing. No `Goal:` line means none is set — do not invent or derive one.
+
 ## check
 
 Read `references/drift.md`. Compare actual work with explicit goals, scope and
@@ -173,6 +178,7 @@ At most three findings and three next steps. Every finding needs contextual
 evidence. Report coverage gaps instead of turning uncertainty into either drift
 or reassurance: `Drift: found.`, `Drift: none.`, or `Drift: unknown.`
 `none` means no deviation in the stated checked scope, not global project health.
+A milestone `Goal: <path>` that does not resolve to a file is a coverage gap.
 `check` writes nothing, including config, captures, migrations and status updates.
 If a write is requested during check, hand off to `capture`/`wrap` rather than
 silently changing this mode's read-only contract.

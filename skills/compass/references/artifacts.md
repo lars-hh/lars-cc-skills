@@ -46,6 +46,10 @@ handoff and contain only open Compass decisions. Avoid competing complete status
 ## Milestones
 
 <!-- Agreed milestones only; proposal capture alone does not populate this. -->
+<!-- Optional per milestone, on its own indented line:
+     Goal: goals/<slug>/goal.md
+     A reference to the /goal condition file (e.g. built by plannotator-setup-goal),
+     never the condition text itself — the condition lives in exactly one place. -->
 
 ## Not doing
 
