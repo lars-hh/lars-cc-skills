@@ -207,6 +207,9 @@ Maintain our records for changes already explicitly authorized in this session.
 Do not infer completion from a commit title, roadmap placement or issue number.
 Undecided goal/status changes are proposals. Adopted files stay untouched.
 
+End with a ready commit line for our records when they are versioned here
+(`references/artifacts.md`, Commit suggestion). Print it; never run it.
+
 ## Anti-nag and boundaries
 
 - Limit unsolicited proposals to three unresolved own hard proposals across

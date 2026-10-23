@@ -87,6 +87,22 @@ Entry grammar is in SKILL.md. No example tasks are added at bootstrap. Closed is
 searched for candidate duplicates but omitted from orientation. Items are never
 deleted. This does not bound file size; archival automation is outside this stage.
 
+### Commit suggestion (`wrap` only)
+
+Compass never commits. After writing, run `git status --short --ignored -- .compass`
+and print one ready line only if the output lists paths *inside* `.compass/`
+(e.g. ` M .compass/HANDOFF.md`, `?? .compass/BACKLOG.md`, `?? .compass/`):
+
+```text
+git add .compass && git commit -m "compass: wrap <YYYY-MM-DD>" -- .compass
+```
+
+The trailing `-- .compass` limits the commit to Compass records even when other
+changes are staged; never drop it. Print no line when the output is empty, marks
+`.compass` ignored (`!!`), shows only the bare entry `.compass` (a symlink), or
+config documents private/external storage. In those cases say nothing about
+committing. Without a git repository, skip silently.
+
 ### Backlog triage (`start` only)
 
 **Triage age: 30 days.** This is the only place the threshold is defined.

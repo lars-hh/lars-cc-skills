@@ -63,3 +63,18 @@ zum ersten Lauf, T5 meldet Einträge in bereits genannten Fremdabschnitten nicht
 ## Offen
 
 - Trigger-Messung weiter blockiert (#77213).
+
+## Nachtrag 2026-10-24: Commit-Vorschlag in `wrap`
+
+Anlass: Lars' Frage, warum compass nie committet. Das Verbot bleibt (Design „Lars' Commit-Regel",
+Allowlist ohne `git commit`), aber `wrap` gibt jetzt die fertige Zeile aus, die das Design ursprünglich
+vorsah: `git add .compass && git commit -m "compass: wrap <datum>" -- .compass`. Das `-- .compass`
+beschränkt den Commit auf die Steuerungsdateien, auch wenn anderes gestaged ist.
+
+- Mechanik vorab in Scratch-Repos geprüft: getrackt + fremde gestagte Datei → nur `.compass/` committet,
+  Fremddatei bleibt gestaged; neues `.compass/` (`?? .compass/`) committbar; exclude → `!! .compass/`;
+  Symlink → `?? .compass` ohne Slash.
+- Agent-Lauf mit neuer Fassung (`iteration-3`): W1 getrackt → Zeile ✅ · W2 exclude → keine Zeile ✅ ·
+  W3 privater Symlink → keine Zeile ✅. HEAD überall unverändert. Die Zeile aus W1 ausgeführt: Commit enthält
+  nur `.compass/HANDOFF.md`, `export.py` bleibt gestaged ✅.
+
