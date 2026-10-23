@@ -87,6 +87,35 @@ Entry grammar is in SKILL.md. No example tasks are added at bootstrap. Closed is
 searched for candidate duplicates but omitted from orientation. Items are never
 deleted. This does not bound file size; archival automation is outside this stage.
 
+### Backlog triage (`start` only)
+
+**Triage age: 30 days.** This is the only place the threshold is defined.
+
+An entry is *stale* when it is under `## Active (hard)`, has `status: proposed`
+(a legacy entry without any status counts as proposed), its `**from:**` date is
+at least the triage age before today, and its newest `kept:` date, if any, is too.
+An entry is *undated* when its `**from:**` holds no parseable date or a date after
+today. Soft items, Closed and undated entries are never candidates. Stale entries,
+oldest `from` first, at most three, are the candidates. None means no triage and
+no mention of it. Without an interactive channel (headless), skip triage silently.
+
+Ask once, after the briefing, as one grouped question with one choice per entry.
+Show ID, short title, `why` and age in days.
+
+| Choice | Write |
+|---|---|
+| accept | `status: proposed` → `status: agreed`, in place |
+| dismiss | `status: dismissed`, move to Closed, checkbox stays `[ ]` |
+| keep | append ` · kept: YYYY-MM-DD` (today) to the entry |
+
+Only an explicit choice for an entry writes that entry. Unanswered entries, a
+deflection, a declined triage, or any answer other than these three (including
+free text) change nothing. An unanswered entry is offered again in a later
+session; that pressure is intended, and `keep` is the way to snooze it. Change only the status text,
+the `kept:` mark and the move to Closed; wording, ID, `why`, `from` and history
+stay byte-identical. Only a Compass-owned BACKLOG is written. Never re-offer the
+same entry in the same session.
+
 ### Handoff
 
 ```markdown

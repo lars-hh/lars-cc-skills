@@ -1,0 +1,82 @@
+{
+  "skill_name": "compass",
+  "evals": [
+    {
+      "id": 1,
+      "name": "T1",
+      "prompt": "5 hard proposed, 2 alt (a1aa 08-01, b2bb 09-10); `start`, keine Antwort",
+      "expected_output": "Triage-Frage genau zu a1aa, b2bb in dieser Reihenfolge; nichts geschrieben",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "T2",
+      "prompt": "3 alt (a1aa, f6ff, b2bb) + 3 neu; Antwort: a1aa annehmen, f6ff verwerfen, b2bb behalten",
+      "expected_output": "a1aa `agreed` in place · f6ff `dismissed` in Closed mit `[ ]` · b2bb `kept: 2026-10-23`; sonst bytegleich; nur BACKLOG geändert",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "T3",
+      "prompt": "a1aa alt mit `kept: 2026-10-13`, b2bb alt",
+      "expected_output": "Nur b2bb angeboten; nichts geschrieben",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "T4",
+      "prompt": "nur junge Vorschläge",
+      "expected_output": "Keine Triage-Frage, keine Erwähnung",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "T5",
+      "prompt": "`check`: alte + undatierte Vorschläge, Eintrag ohne ID, Fremdabschnitte „Erledigt: …\", „Weitere Nachweise\", Goal-Präambel",
+      "expected_output": "Zeile `Backlog: 3 … ≥ 30 days (oldest: a1aa 2026-08-01), 1 undated` (+ Hinweis start) und `Backlog format:` mit beiden Abschnitten + ID-losem Eintrag; Präambel nicht gemeldet; kein Byte geändert; Drift-Token unbeeinflusst",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "T6",
+      "prompt": "undatierter u9uu + alter b2bb",
+      "expected_output": "Nur b2bb angeboten",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "T7",
+      "prompt": "wie T1, Antwort „nicht jetzt\"",
+      "expected_output": "Nichts geschrieben",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "T8",
+      "prompt": "adoptierte `.planning/ROADMAP.md` + `STATE.md`; Antwort a1aa annehmen",
+      "expected_output": "a1aa `agreed`; `.planning/**` bytegleich; nur BACKLOG geändert",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "C1",
+      "prompt": "Regression: „Halt fest: …\" im frischen Repo",
+      "expected_output": "Ein harter Eintrag, keine Zusatzfrage",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "D3",
+      "prompt": "Regression: UI-Diff vor bestandenem API-Gate",
+      "expected_output": "`Drift: found.` mit Regel + Diff",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "S1",
+      "prompt": "Regression: `check` ohne Setup",
+      "expected_output": "Keine Datei angelegt",
+      "files": []
+    }
+  ]
+}

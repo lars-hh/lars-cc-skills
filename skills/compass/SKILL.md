@@ -18,7 +18,7 @@ Historical learnings explain prior choices; the current contract below governs.
 
 | Invocation | Behavior |
 |---|---|
-| `start` | Orient; complete missing setup using `references/bootstrap.md` |
+| `start` | Orient; complete missing setup using `references/bootstrap.md`; offer backlog triage |
 | `check [--deep]` | Read-only comparison using `references/drift.md`; never bootstrap |
 | `capture <text> [--hard\|--soft]` | Check duplicates, record the authorized insight, confirm briefly |
 | `capture` without text | Record the unambiguous insight just discussed; ask only if its meaning is unclear |
@@ -49,8 +49,8 @@ A roadmap states goals and milestones. A decisions source contains binding
 choices, constraints or reasons; a consolidated architecture document can qualify.
 A descriptive overview without choices does not. See `references/artifacts.md`.
 
-Resolution itself is read-only. Only `start` persists missing configuration and
-completes setup. A missing configured source is a gap, not permission to silently
+Resolution itself is read-only. Only `start` persists missing configuration,
+completes setup and applies explicit triage choices. A missing configured source is a gap, not permission to silently
 replace it or change ownership. `check` reports the gap; a writing mode asks only
 if resolving it is necessary for its requested write.
 
@@ -101,6 +101,9 @@ for that file's owner. Never claim that an unapplied proposal changed the source
 - `[x]` means done only; dismissed hard items keep `[ ]`. Soft items stay bullets.
 - Optional `issue: #N` or `issue: <URL>` and `roadmap: <path#section>` are
   references, never the item's identity. Prefer an issue URL if repo is ambiguous.
+- Optional `kept: YYYY-MM-DD` records a triage choice to keep a proposal open,
+  appended as ` · kept: …` at the end of the entry's last line (parsed anywhere
+  in the entry). Repeatable, newest counts; no status change, no agreement.
 - New own proposals may carry `suggested-by: compass`; explicit user captures
   carry `suggested-by: user`. Existing items need no migration.
 
@@ -137,8 +140,8 @@ For “accept c7k2” record `agreed`. For “add c7k2 to our roadmap”, add th
 milestone to an own roadmap and cross-reference it; advance a proposed item to
 `agreed`, never to `done` merely for transfer. Preserve existing `in progress` or
 `done` status; transfer must not regress it. A dismissed item needs explicit
-reopening before transfer. If no own roadmap exists, create the minimal roadmap only when that
-explicit transfer request authorizes it. Never replace an adopted/missing
+reopening before transfer. If no own roadmap exists, create the minimal roadmap
+only when that explicit transfer request authorizes it. Never replace an adopted/missing
 configured roadmap. For adopted roadmaps, hand over a ready-to-apply edit and
 say the transfer remains pending. No extra planning mode or plan files.
 
@@ -166,6 +169,12 @@ briefing as the ready `/goal` source (e.g. `/goal` pointing at that file). Read
 the file only to confirm it exists; never copy its condition into the roadmap or
 the briefing. No `Goal:` line means none is set — do not invent or derive one.
 
+After the briefing, once per session, offer triage of at most three stale hard
+proposals (`references/artifacts.md`, Backlog triage). Write only the choices the
+user actually makes; no answer, a deflection or a declined offer writes nothing.
+Triage is outside the 12-line and two-question setup budgets; skip it in a `start`
+that already asked setup questions.
+
 ## check
 
 Read `references/drift.md`. Compare actual work with explicit goals, scope and
@@ -179,6 +188,8 @@ evidence. Report coverage gaps instead of turning uncertainty into either drift
 or reassurance: `Drift: found.`, `Drift: none.`, or `Drift: unknown.`
 `none` means no deviation in the stated checked scope, not global project health.
 A milestone `Goal: <path>` that does not resolve to a file is a coverage gap.
+Add the backlog hygiene lines from `references/drift.md`; they report, never repair.
+Their `start` pointer is not a next step and replaces the generic `start` mention.
 `check` writes nothing, including config, captures, migrations and status updates.
 If a write is requested during check, hand off to `capture`/`wrap` rather than
 silently changing this mode's read-only contract.
@@ -202,7 +213,8 @@ Undecided goal/status changes are proposals. Adopted files stay untouched.
   sessions. Count `suggested-by: compass`; for legacy unmarked proposed hard items
   conservatively count them too. User-requested capture is never blocked.
   Mention a reached limit once per session, not every turn. No persistence writes
-  in `check` merely to maintain this limit.
+  in `check` merely to maintain this limit. Triage of already recorded proposals
+  in `start` is not a new proposal and is outside this limit.
 - Consult origin before re-raising an item; a date alone does not prove relevance.
   Closed suppresses re-proposal, not the ability to check duplicates.
 - Never implement project code, commit, push, change instruction files, or repair

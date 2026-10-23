@@ -100,6 +100,24 @@ choice versus SQLite as a schema example is not a contradiction. Respect instruc
 priority; report the conflict without editing either adopted source or judging
 an entire instruction file “outdated”.
 
+## Backlog hygiene
+
+Two report lines, outside the three-finding limit, from a Compass-owned BACKLOG:
+
+- `Backlog: <n> stale proposals (oldest: <id> <date>), <m> undated` — *stale*
+  and *undated* exactly as defined in `artifacts.md` (Backlog triage); m counts
+  hard proposed entries that have a `**from:**` field without a usable date. If
+  n ≥ 1, add once: `start` offers triage. Omit the line when n and m are both 0.
+- `Backlog format: <deviations>` — H2 sections other than `Active (hard)`,
+  `Loose ends (soft)`, `Closed`, and entries lacking an ID or any `**from:**`
+  field, named by heading or ID (at most five, then a count). An entry counted as
+  undated above, or inside a section already named here, is not repeated. A short preamble under the title, such as a
+  goal line, is not a deviation. Omit the line when there is none.
+
+These lines are hygiene, not drift: they never change the final `Drift:` token.
+Never repair a deviation in `check`; restructuring needs an explicit `capture`
+maintenance request. An adopted or missing BACKLOG gets no hygiene lines.
+
 ## Report
 
 Keep the report short, with up to three findings and three next steps total.
@@ -110,6 +128,7 @@ Goal: <source-backed goal or unavailable>
 Position: <source-backed position or unknown>
 Coverage: <git range/sample and truncation; sources; current conversation only>
 <material limitations, if any>
+<backlog hygiene lines, if any>
 Drift: none.
 ```
 
